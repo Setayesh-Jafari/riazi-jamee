@@ -1,0 +1,2766 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-font-size="normal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>استودیو بازی ریاضی پایهٔ اول | ۳۰ پرامپت آمادهٔ ساخت بازی</title>
+<meta name="description" content="۳۰ پرامپت آماده و سفارشی برای ساخت بازی‌های تعاملی ریاضی پایهٔ اول دبستان، منطبق بر ۲۵ تم کتاب درسی، با خروجی HTML تک‌فایل، آفلاین و بدون نیاز به اینترنت.">
+<meta name="author" content="ستایش جعفری">
+
+<style>
+  :root {
+    --base-font: 16px;
+    --bg: #fdfbf7;
+    --bg-alt: #f7efe4;
+    --bg-mesh: radial-gradient(circle at 10% 15%, rgba(254, 240, 190, 0.45) 0%, transparent 40%),
+               radial-gradient(circle at 90% 85%, rgba(210, 246, 236, 0.45) 0%, transparent 40%),
+               radial-gradient(circle at 50% 50%, rgba(254, 226, 226, 0.20) 0%, transparent 60%);
+    --card: #ffffff;
+    --card-hover: #fffdfa;
+    --ink: #1a2229;
+    --ink-muted: #566472;
+    --ink-soft: #8594a2;
+    --line: #ebdcc9;
+    --line-light: #f3e9dc;
+    --line-dark: #d8c3a7;
+    
+    --teal: #108e75;
+    --teal-dark: #0a6956;
+    --teal-light: #e6f6f1;
+    --teal-glow: rgba(16, 142, 117, 0.22);
+    
+    --orange: #de622b;
+    --orange-dark: #b5471a;
+    --orange-light: #fef1e8;
+    
+    --purple: #6d54a4;
+    --purple-dark: #533f80;
+    --purple-light: #f2eefa;
+    
+    --gold: #d4931e;
+    --gold-dark: #aa7314;
+    --gold-light: #fef6e7;
+    
+    --blue: #326bc6;
+    --blue-light: #edf4fe;
+    
+    --coral: #dc4b61;
+    --coral-light: #fdeef1;
+    
+    --r-xl: 24px;
+    --r-lg: 18px;
+    --r-md: 12px;
+    --r-sm: 8px;
+    --r-pill: 999px;
+    
+    --sh-sm: 0 2px 6px rgba(70, 50, 30, 0.05);
+    --sh-md: 0 8px 24px -4px rgba(70, 50, 30, 0.08), 0 2px 8px -2px rgba(70, 50, 30, 0.04);
+    --sh-lg: 0 18px 40px -8px rgba(70, 50, 30, 0.12), 0 6px 16px -4px rgba(70, 50, 30, 0.05);
+  }
+
+  html[data-font-size="small"] { --base-font: 14.5px; }
+  html[data-font-size="normal"] { --base-font: 16px; }
+  html[data-font-size="large"] { --base-font: 17.5px; }
+  html[data-font-size="xlarge"] { --base-font: 19px; }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    background-image: var(--bg-mesh);
+    color: var(--ink);
+    font-size: var(--base-font);
+    line-height: 1.85;
+    font-family: "Vazirmatn", "Vazir", "Shabnam", "Sahel", "Samim", "IRANSans", "Dana", "B Yekan", "Yekan", "Segoe UI", -apple-system, BlinkMacSystemFont, Tahoma, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern", "liga", "calt";
+  }
+
+  a { color: var(--teal); text-decoration-thickness: 1.5px; text-underline-offset: 3px; transition: color 0.15s; }
+  a:hover { color: var(--teal-dark); }
+
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+  .num { direction: ltr; unicode-bidi: isolate; display: inline-block; font-variant-numeric: tabular-nums; }
+
+  /* Tactile Interactive Buttons */
+  button, input, select, textarea {
+    font-family: inherit;
+    font-size: 1rem;
+    color: inherit;
+  }
+  button {
+    cursor: pointer;
+    border: 2px solid var(--line);
+    background: #fff;
+    border-radius: var(--r-md);
+    min-height: 44px;
+    padding: 8px 16px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: transform 0.12s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    box-shadow: 0 3px 0 var(--line-dark);
+  }
+  button:hover {
+    border-color: var(--line-dark);
+    background: #fffaf2;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 0 var(--line-dark);
+  }
+  button:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 var(--line-dark);
+  }
+  button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visible {
+    outline: 3px solid var(--teal);
+    outline-offset: 2px;
+  }
+
+  .btn-primary {
+    background: linear-gradient(160deg, var(--teal), var(--teal-dark));
+    border-color: var(--teal-dark);
+    color: #fff;
+    box-shadow: 0 4px 0 #074a3c, 0 8px 18px var(--teal-glow);
+  }
+  .btn-primary:hover {
+    background: linear-gradient(160deg, #15a487, var(--teal));
+    border-color: #074a3c;
+    color: #fff;
+    box-shadow: 0 5px 0 #074a3c, 0 10px 22px var(--teal-glow);
+  }
+  .btn-primary:active {
+    box-shadow: 0 1px 0 #074a3c;
+  }
+
+  .btn-gold {
+    background: linear-gradient(160deg, #e5a42e, var(--gold));
+    border-color: var(--gold-dark);
+    color: #38270b;
+    box-shadow: 0 4px 0 #8f5f0e;
+  }
+  .btn-gold:hover {
+    background: linear-gradient(160deg, #f0b038, #de9c25);
+    color: #271a04;
+    box-shadow: 0 5px 0 #8f5f0e;
+  }
+  .btn-gold:active {
+    box-shadow: 0 1px 0 #8f5f0e;
+  }
+
+  .btn-ghost {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    box-shadow: none;
+    border-color: var(--line);
+  }
+  .btn-ghost:hover {
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  /* Top Navigation */
+  nav.top {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    background: rgba(253, 251, 247, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 2px solid var(--line);
+  }
+  nav.top .in {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: space-between;
+    padding: 10px 20px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 900;
+    font-size: 1.12rem;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .brand .logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: linear-gradient(140deg, #1cb394, var(--teal-dark));
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 1.4rem;
+    box-shadow: 0 4px 12px var(--teal-glow), inset 0 2px 3px rgba(255,255,255,0.4);
+    border: 2px solid #fff;
+  }
+  .brand .grade-tag {
+    font-size: 0.76rem;
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    border: 1px solid rgba(24, 138, 114, 0.28);
+    border-radius: var(--r-pill);
+    padding: 2px 10px;
+    font-weight: 800;
+  }
+  .nav-tools {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Font Resizer Widget */
+  .font-resizer {
+    display: inline-flex;
+    align-items: center;
+    background: #fff;
+    border: 1.5px solid var(--line);
+    border-radius: var(--r-pill);
+    padding: 2px 4px;
+    box-shadow: var(--sh-sm);
+  }
+  .font-resizer span.lbl {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--ink-soft);
+    padding: 0 6px;
+  }
+  .font-btn {
+    border: none;
+    box-shadow: none;
+    min-height: 30px;
+    padding: 2px 8px;
+    border-radius: var(--r-pill);
+    font-size: 0.8rem;
+    font-weight: 800;
+    background: transparent;
+    color: var(--ink);
+  }
+  .font-btn:hover {
+    background: var(--bg-alt);
+    transform: none;
+    box-shadow: none;
+  }
+  .font-btn.active {
+    background: var(--teal);
+    color: #fff;
+  }
+
+  /* Hero Section (Compact & Purposeful) */
+  header.hero {
+    padding: 24px 0 16px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 24px;
+    align-items: center;
+  }
+  .eyebrow-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 2px solid var(--line);
+    border-radius: var(--r-pill);
+    padding: 4px 14px;
+    font-size: 0.84rem;
+    font-weight: 800;
+    color: var(--ink-muted);
+    box-shadow: var(--sh-sm);
+    margin-bottom: 10px;
+  }
+  .pulse-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 0 0 rgba(24, 138, 114, 0.7);
+    animation: pulseGlow 2s infinite;
+  }
+  @keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(24, 138, 114, 0.7); }
+    70% { box-shadow: 0 0 0 8px rgba(24, 138, 114, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(24, 138, 114, 0); }
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 3.8vw, 2.45rem);
+    line-height: 1.45;
+    margin: 6px 0 10px;
+    font-weight: 900;
+    letter-spacing: -0.015em;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--orange-dark);
+    background: linear-gradient(transparent 62%, #ffe0c3 62%);
+    padding: 0 4px;
+    border-radius: 4px;
+  }
+  .lead {
+    color: #4e443a;
+    margin: 0 0 18px;
+    font-size: 1.04rem;
+    line-height: 1.9;
+    max-width: 640px;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .hero-stats-chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .stat-chip {
+    background: var(--card);
+    border: 1.5px solid var(--line);
+    border-radius: var(--r-pill);
+    padding: 4px 12px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--ink-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: var(--sh-sm);
+  }
+  .stat-chip b {
+    color: var(--teal-dark);
+    font-weight: 900;
+  }
+
+  /* Creator Credit Chip */
+  .creator-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 14px;
+    padding: 6px 16px 6px 8px;
+    background: linear-gradient(135deg, #fff7ec, #fdf0f3);
+    border: 1.5px solid var(--line-dark);
+    border-radius: var(--r-pill);
+    box-shadow: var(--sh-sm);
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--ink-muted);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .creator-chip:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sh-md);
+  }
+  .creator-chip .creator-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(140deg, var(--coral), var(--orange));
+    color: #fff;
+    font-size: 0.74rem;
+    font-weight: 900;
+    box-shadow: 0 2px 6px rgba(220, 75, 97, 0.35);
+    flex-shrink: 0;
+  }
+  .creator-chip b {
+    color: var(--orange-dark);
+    font-weight: 900;
+  }
+
+  /* Hero SVG Scene */
+  .scene-card {
+    background: linear-gradient(170deg, #ffffff, #fcf4e8);
+    border: 3px solid var(--line);
+    border-radius: var(--r-xl);
+    padding: 10px;
+    box-shadow: var(--sh-md);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .scene-card::before {
+    content: "🚂 کلیک کن: صدای بوق قطار!";
+    position: absolute;
+    bottom: 10px;
+    inset-inline-start: 14px;
+    font-size: 0.74rem;
+    font-weight: 800;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid var(--line);
+    border-radius: var(--r-pill);
+    padding: 2px 10px;
+    color: var(--teal-dark);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .scene-svg { width: 100%; height: auto; display: block; }
+
+  @keyframes steamFloat {
+    0% { transform: translate(0, 0) scale(0.8); opacity: 0; }
+    50% { opacity: 0.85; }
+    100% { transform: translate(-18px, -38px) scale(1.4); opacity: 0; }
+  }
+  .steam-1 { animation: steamFloat 2.6s infinite ease-out; transform-origin: center; }
+  .steam-2 { animation: steamFloat 2.6s infinite ease-out 0.9s; transform-origin: center; }
+  .steam-3 { animation: steamFloat 2.6s infinite ease-out 1.7s; transform-origin: center; }
+
+  @keyframes balloonFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(2deg); }
+  }
+  .anim-float { animation: balloonFloat 4s ease-in-out infinite; transform-origin: bottom center; }
+  .anim-float-delay { animation: balloonFloat 4.5s ease-in-out infinite 1.5s; transform-origin: bottom center; }
+
+  @keyframes sunSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .anim-sun { animation: sunSpin 24s linear infinite; transform-origin: 390px 65px; }
+
+  /* =========================================================
+     NEW: 25-THEME INTERACTIVE TIMELINE / RAIL
+     ========================================================= */
+  .theme-rail-section {
+    margin: 18px 0 24px;
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: var(--r-xl);
+    padding: 14px 16px;
+    box-shadow: var(--sh-md);
+  }
+  .theme-rail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .theme-rail-title {
+    font-size: 0.96rem;
+    font-weight: 800;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .theme-rail-note {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .theme-rail-scroll {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  .theme-rail-scroll::-webkit-scrollbar { height: 6px; }
+  .theme-rail-scroll::-webkit-scrollbar-thumb { background: #dcc8b1; border-radius: 4px; }
+  .theme-rail-scroll::-webkit-scrollbar-track { background: var(--bg-alt); border-radius: 4px; }
+
+  .theme-pill-btn {
+    flex-shrink: 0;
+    min-height: 40px;
+    padding: 6px 14px;
+    border-radius: var(--r-pill);
+    background: #fbf7f0;
+    border: 1.5px solid var(--line);
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: none;
+    transition: all 0.15s ease;
+  }
+  .theme-pill-btn:hover {
+    background: var(--teal-light);
+    border-color: var(--teal);
+    color: var(--teal-dark);
+    transform: translateY(-1px);
+  }
+  .theme-pill-btn[aria-pressed="true"] {
+    background: var(--teal);
+    border-color: var(--teal-dark);
+    color: #fff;
+    box-shadow: 0 3px 0 #084c3e;
+  }
+  .theme-pill-btn span.badge-num {
+    background: rgba(0,0,0,0.08);
+    padding: 1px 6px;
+    border-radius: var(--r-pill);
+    font-size: 0.74rem;
+  }
+  .theme-pill-btn[aria-pressed="true"] span.badge-num {
+    background: rgba(255,255,255,0.25);
+  }
+
+  /* =========================================================
+     REVAMPED SEARCH & FILTER COMMAND CENTER
+     ========================================================= */
+  .filter-center {
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: var(--r-xl);
+    padding: 18px;
+    box-shadow: var(--sh-md);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* Search Row with Scope Dropdown */
+  .search-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .search-scope-select {
+    flex: 0 0 170px;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 10px 12px;
+    min-height: 48px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+  .search-input-wrap {
+    flex: 1 1 320px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .search-input-wrap input {
+    background: #fffdfc;
+    border: 2px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 10px 42px 10px 38px;
+    min-height: 48px;
+    width: 100%;
+    font-size: 0.98rem;
+    font-weight: 600;
+  }
+  .search-icon-inside {
+    position: absolute;
+    inset-inline-start: 14px;
+    color: var(--ink-soft);
+    pointer-events: none;
+    font-size: 1.15rem;
+  }
+  .search-clear-btn {
+    position: absolute;
+    inset-inline-end: 10px;
+    min-height: 28px;
+    width: 28px;
+    padding: 0;
+    border: none;
+    background: var(--bg-alt);
+    border-radius: 50%;
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    box-shadow: none;
+    display: none;
+  }
+  .search-clear-btn.visible { display: grid; place-items: center; }
+
+  /* Quick Search Suggestions */
+  .quick-search-tags {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .quick-search-tags span.label {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--ink-soft);
+  }
+  .search-tag-btn {
+    min-height: 28px;
+    padding: 2px 10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    background: var(--bg-alt);
+    border: 1px solid var(--line);
+    border-radius: var(--r-pill);
+    box-shadow: none;
+    color: var(--ink-muted);
+  }
+  .search-tag-btn:hover {
+    background: var(--teal-light);
+    border-color: var(--teal);
+    color: var(--teal-dark);
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Multi-Row Visual Filter Chips */
+  .filter-matrix {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-top: 1.5px solid var(--line-light);
+    padding-top: 14px;
+  }
+  .filter-group-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .filter-group-label {
+    font-size: 0.84rem;
+    font-weight: 800;
+    color: var(--ink-muted);
+    min-width: 100px;
+    flex-shrink: 0;
+  }
+  .filter-chips-wrap {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+    flex: 1;
+  }
+  .f-chip {
+    min-height: 36px;
+    padding: 4px 12px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    background: #fff;
+    border: 1.5px solid var(--line);
+    border-radius: var(--r-pill);
+    box-shadow: 0 1.5px 0 var(--line-dark);
+    transition: all 0.15s ease;
+  }
+  .f-chip:hover {
+    background: var(--bg-alt);
+    border-color: var(--line-dark);
+    transform: translateY(-1px);
+  }
+  .f-chip[aria-pressed="true"] {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+    box-shadow: 0 2px 0 #000;
+  }
+
+  /* Skills Chips with custom badges */
+  .f-chip-skill[aria-pressed="true"] {
+    background: var(--teal);
+    border-color: var(--teal-dark);
+    color: #fff;
+    box-shadow: 0 2px 0 #074a3c;
+  }
+
+  /* Styles Chips with color dots */
+  .f-chip-style[aria-pressed="true"] {
+    background: var(--style-color, var(--purple));
+    border-color: var(--style-color, var(--purple));
+    color: #fff;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.3);
+  }
+
+  /* Active Filters Bar */
+  .active-filters-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    background: #fbf7ef;
+    border: 1.5px dashed var(--line);
+    border-radius: var(--r-md);
+    padding: 8px 12px;
+    font-size: 0.84rem;
+  }
+  .active-filters-bar span.lbl {
+    font-weight: 800;
+    color: var(--ink-muted);
+  }
+  .active-tag {
+    background: #fff;
+    border: 1.5px solid var(--teal);
+    color: var(--teal-dark);
+    border-radius: var(--r-pill);
+    padding: 2px 10px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .active-tag:hover {
+    background: #fee2e2;
+    border-color: #ef4444;
+    color: #b91c1c;
+  }
+  .btn-reset-all {
+    min-height: 28px;
+    padding: 2px 10px;
+    font-size: 0.78rem;
+    margin-inline-start: auto;
+    background: #fff;
+    border-color: #e5d7c3;
+    box-shadow: none;
+  }
+
+  /* Workspace Bar: Count, Sort, and View Mode Switcher */
+  .workspace-meta-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 8px 2px 14px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ink-muted);
+  }
+  .view-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .view-btn {
+    min-height: 36px;
+    padding: 4px 12px;
+    font-size: 0.82rem;
+    border-radius: var(--r-sm);
+    box-shadow: none;
+    background: #fff;
+  }
+  .view-btn.active {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+  }
+
+  /* =========================================================
+     CARDS GRID & COMPACT LIST VIEW
+     ========================================================= */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  /* Card Anatomy (Grid View) */
+  .card {
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: var(--r-xl);
+    padding: 18px;
+    box-shadow: var(--sh-md);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sh-lg);
+    border-color: var(--accent, var(--teal));
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    inset-inline: 0;
+    height: 6px;
+    background: var(--accent, var(--teal));
+  }
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .theme-badge {
+    font-size: 0.78rem;
+    font-weight: 800;
+    background: #fdf5ea;
+    border: 1.5px solid #ebd7bf;
+    color: #8c5e1c;
+    border-radius: var(--r-pill);
+    padding: 2px 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .kind-pill {
+    font-size: 0.74rem;
+    font-weight: 800;
+    border-radius: var(--r-pill);
+    padding: 2px 8px;
+  }
+  .kind-lesson { background: #eaf6f2; color: #15735f; border: 1px solid #bce2d6; }
+  .kind-solve { background: #f3effb; color: #644da0; border: 1px solid #dcd1f5; }
+  .kind-review { background: #fef2e8; color: #b25324; border: 1px solid #fed2b7; }
+
+  .fav {
+    min-height: 38px;
+    width: 38px;
+    padding: 0;
+    border-radius: 12px;
+    background: #fff;
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 2px 0 var(--line-dark);
+    flex-shrink: 0;
+  }
+  .fav:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+    background: #fffdf5;
+  }
+  .fav[aria-pressed="true"] {
+    background: #fff2cf;
+    border-color: var(--gold);
+    color: #b57a15;
+    box-shadow: 0 2px 0 #af7717;
+  }
+
+  .card .style-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #fff;
+    background: var(--accent, var(--teal));
+    border-radius: var(--r-pill);
+    padding: 3px 12px;
+    align-self: flex-start;
+  }
+  .card h3 {
+    margin: 4px 0 0;
+    font-size: 1.15rem;
+    font-weight: 800;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .card .goal-box {
+    background: #fbf7ef;
+    border: 1.5px dashed var(--line);
+    border-radius: var(--r-md);
+    padding: 8px 12px;
+    font-size: 0.88rem;
+    color: #55493b;
+    line-height: 1.7;
+  }
+  .card .goal-box b { color: var(--teal-dark); }
+  
+  .chips {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  .chip {
+    font-size: 0.74rem;
+    font-weight: 700;
+    background: var(--bg-alt);
+    border: 1px solid var(--line);
+    border-radius: var(--r-pill);
+    padding: 2px 9px;
+    color: #635749;
+  }
+  .chip-num {
+    background: #fff8e8;
+    border-color: #ecd5a5;
+    color: #8c5d15;
+    font-weight: 800;
+  }
+
+  .card .actions {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+    flex-wrap: wrap;
+    padding-top: 6px;
+  }
+  .card .actions button {
+    flex: 1 1 auto;
+    font-size: 0.92rem;
+    min-height: 44px;
+    border-radius: var(--r-md);
+  }
+  .btn-quick-copy.copied {
+    background: #eaf7f2 !important;
+    border-color: var(--teal) !important;
+    color: var(--teal-dark) !important;
+  }
+
+  /* Compact List View Mode */
+  .cards-grid.view-list {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .cards-grid.view-list .card {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 18px;
+    border-radius: var(--r-lg);
+  }
+  .cards-grid.view-list .card::before {
+    top: 0;
+    bottom: 0;
+    inset-inline-start: 0;
+    width: 6px;
+    height: 100%;
+  }
+  .cards-grid.view-list .card-top { flex-direction: column; align-items: flex-start; gap: 4px; flex: 0 0 160px; }
+  .cards-grid.view-list .card-main-info { flex: 1 1 380px; }
+  .cards-grid.view-list .card-main-info h3 { margin: 0 0 4px; font-size: 1.05rem; }
+  .cards-grid.view-list .goal-box { margin: 0; padding: 4px 10px; font-size: 0.84rem; }
+  .cards-grid.view-list .card .actions { margin: 0; padding: 0; flex: 0 0 240px; }
+
+  /* Empty state */
+  .empty {
+    background: var(--card);
+    border: 3px dashed var(--line);
+    border-radius: var(--r-xl);
+    padding: 38px 20px;
+    text-align: center;
+    color: var(--ink-muted);
+    display: grid;
+    gap: 12px;
+    place-items: center;
+  }
+  .empty-icon { font-size: 2.8rem; }
+
+  /* How-to Roadmap */
+  .howto-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid var(--line);
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .step-card {
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: var(--r-xl);
+    padding: 22px 18px;
+    box-shadow: var(--sh-md);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .step-num {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: var(--step-accent, var(--teal));
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-weight: 900;
+    font-size: 1.25rem;
+  }
+  .step-card h3 { margin: 0; font-size: 1.18rem; font-weight: 800; }
+  .step-card p { margin: 0; color: #5d5347; font-size: 0.94rem; line-height: 1.8; }
+
+  .warn-banner {
+    background: #fff8e8;
+    border: 2px solid #edd4a0;
+    border-radius: var(--r-lg);
+    padding: 16px 20px;
+    font-size: 0.94rem;
+    line-height: 1.85;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    box-shadow: var(--sh-sm);
+    margin-top: 18px;
+  }
+
+  /* Dialogs */
+  dialog {
+    border: none;
+    padding: 0;
+    border-radius: var(--r-xl);
+    max-width: min(1080px, 96vw);
+    width: 100%;
+    box-shadow: 0 28px 70px -10px rgba(45, 30, 15, 0.45);
+    background: transparent;
+  }
+  dialog::backdrop {
+    background: rgba(35, 26, 18, 0.65);
+    backdrop-filter: blur(6px);
+  }
+  .dlg {
+    background: var(--card);
+    border-radius: var(--r-xl);
+    padding: 22px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 2px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .dlg-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--line-light);
+    padding-bottom: 12px;
+  }
+  .dlg-head h3 { margin: 0; font-size: 1.3rem; font-weight: 800; }
+  .btn-close { min-height: 38px; padding: 6px 14px; border-radius: var(--r-pill); font-size: 0.88rem; }
+
+  .dlg-grid {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 18px;
+  }
+  .pane {
+    background: #fffdf9;
+    border: 2px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .pane h4 {
+    margin: 0 0 4px;
+    font-size: 1.02rem;
+    font-weight: 800;
+    color: var(--teal-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Toggle Switch */
+  .switch-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--r-sm);
+    background: #fbf7ef;
+    border: 1px solid var(--line-light);
+  }
+  .switch-row label { font-size: 0.88rem; font-weight: 700; cursor: pointer; flex: 1; }
+  .toggle { position: relative; width: 46px; height: 26px; display: inline-block; flex-shrink: 0; }
+  .toggle input { opacity: 0; width: 0; height: 0; margin: 0; }
+  .slider { position: absolute; inset: 0; background: #d8cdbe; border-radius: var(--r-pill); cursor: pointer; transition: 0.2s; }
+  .slider::before {
+    content: ""; position: absolute; height: 20px; width: 20px; inset-inline-start: 3px; bottom: 3px;
+    background: #fff; border-radius: 50%; transition: 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  .toggle input:checked + .slider { background: var(--teal); }
+  .toggle input:checked + .slider::before { transform: translateX(-20px); }
+
+  .level-pills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .level-btn { font-size: 0.85rem; padding: 6px 4px; min-height: 38px; border-radius: var(--r-sm); background: #fff; border: 2px solid var(--line); font-weight: 800; }
+  .level-btn[aria-pressed="true"] { background: var(--teal-light); border-color: var(--teal); color: var(--teal-dark); }
+
+  #promptBox {
+    min-height: 380px;
+    font-size: 0.88rem;
+    line-height: 1.95;
+    font-family: "Vazirmatn", "Fira Code", monospace, sans-serif;
+    white-space: pre-wrap;
+    background: #fffefb;
+    border: 2px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 14px;
+    flex: 1;
+  }
+  .dlg-foot { display: flex; gap: 12px; flex-wrap: wrap; justify-content: space-between; margin-top: 14px; align-items: center; }
+  .char-badge { font-size: 0.82rem; font-weight: 800; color: var(--ink-muted); background: var(--bg-alt); border-radius: var(--r-pill); padding: 3px 12px; }
+
+  /* Game Frame Wrapper */
+  .game-arcade-wrap {
+    background: #2b231c; border: 4px solid #4a3c2e; border-radius: 24px; padding: 12px;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.4), 0 12px 30px rgba(0,0,0,0.25);
+  }
+  .arcade-bar { display: flex; justify-content: space-between; align-items: center; color: #e0d2c0; font-size: 0.82rem; font-weight: 800; padding: 2px 6px 10px; }
+  .arcade-dots { display: flex; gap: 6px; }
+  .arcade-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .game-frame { width: 100%; height: min(78vh, 740px); border: none; border-radius: 16px; background: #fdf6ec; display: block; }
+
+  /* Toast Notification */
+  #toast {
+    position: fixed; inset-inline: 0; bottom: 24px; margin: auto; width: max-content; max-width: 92vw;
+    background: #1e1b18; color: #fff; padding: 12px 24px; border-radius: var(--r-pill); font-weight: 800;
+    font-size: 0.95rem; box-shadow: 0 12px 32px rgba(0,0,0,0.3); opacity: 0; transform: translateY(16px);
+    transition: opacity 0.25s ease, transform 0.25s ease; z-index: 100; pointer-events: none;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  #toast.on { opacity: 1; transform: translateY(0); }
+
+  /* Footer */
+  footer.site { border-top: 2px solid var(--line); margin-top: 40px; padding: 26px 0; color: var(--ink-muted); font-size: 0.9rem; }
+  .footer-credit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 4px 0 10px;
+    padding: 8px 18px;
+    background: linear-gradient(135deg, #fff7ec, #fdf0f3);
+    border: 1.5px dashed var(--line-dark);
+    border-radius: var(--r-pill);
+    width: fit-content;
+    margin-inline: auto;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink-muted);
+  }
+  .footer-credit b { color: var(--orange-dark); font-weight: 900; }
+  .footer-credit .heart { animation: heartBeat 1.6s ease-in-out infinite; display: inline-block; }
+  @keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.18); }
+    40% { transform: scale(1); }
+    60% { transform: scale(1.12); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .footer-credit .heart { animation: none; }
+  }
+
+  @media (max-width: 960px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps-grid { grid-template-columns: 1fr; }
+    .dlg-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .search-row { flex-direction: column; align-items: stretch; }
+    .search-scope-select { flex: 1; }
+    .filter-group-label { min-width: auto; width: 100%; margin-bottom: -4px; }
+    .nav-tools .brand-btn-text { display: none; }
+    .hero-cta button { width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top Navigation -->
+<nav class="top">
+  <div class="in">
+    <a href="#" class="brand">
+      <span class="logo">🎲</span>
+      <span>استودیو بازی ریاضی <span class="grade-tag">پایهٔ اول دبستان</span></span>
+    </a>
+    
+    <div class="nav-tools">
+      <!-- Font Resizer -->
+      <div class="font-resizer" title="تغییر اندازهٔ نوشته‌ها">
+        <span class="lbl">قلم:</span>
+        <button type="button" class="font-btn" data-fsize="small">A-</button>
+        <button type="button" class="font-btn active" data-fsize="normal">A</button>
+        <button type="button" class="font-btn" data-fsize="large">A+</button>
+        <button type="button" class="font-btn" data-fsize="xlarge">A++</button>
+      </div>
+
+      <button id="btnSoundToggle" class="btn-ghost" type="button" style="min-height:38px;padding:4px 12px;font-size:0.86rem;" title="صدای تعاملی استودیو">
+        <span id="soundIcon">🔊</span>
+      </button>
+
+      <button id="btnBrand" class="btn-ghost" type="button" style="min-height:38px;padding:4px 12px;font-size:0.86rem;">
+        ✍️ <span id="navBrandName" class="brand-btn-text">برند آموزگار</span>
+      </button>
+
+      <button id="navGame" class="btn-gold" type="button" style="min-height:38px;padding:4px 12px;font-size:0.86rem;">
+        🎮 بازی نمونه
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow-badge">
+          <span class="pulse-dot"></span>
+          <span>منطبق بر ۲۵ تم کتاب درسی ریاضی اول ابتدایی • چاپ ۱۴۰۲-۱۴۰۳</span>
+        </div>
+        <h1>ریاضیِ کلاس اول را به یک <em>بازیِ دست‌ورزانه و شیرین</em> تبدیل کن!</h1>
+        <p class="lead">
+          از شمارش پروانه‌ها تا راز عدد ۱۰۰؛ <b>۳۰ پرامپت آماده و سفارشی</b> برای ساخت بازی تعاملی با هوش مصنوعی، با خروجی <b>HTML تک‌فایل، آفلاین و بدون نیاز به اینترنت</b>.
+        </p>
+        <div class="hero-cta">
+          <button class="btn-primary" type="button" id="btnGoLib">
+            <span>کشف ۳۰ پرامپت آماده</span> <span>↓</span>
+          </button>
+          <button class="btn-gold" type="button" id="btnTryGame">
+            <span>🎮 اجرای بازی نمونه (تم ۳: قطار واگن‌ها)</span>
+          </button>
+        </div>
+        <div class="hero-stats-chips">
+          <span class="stat-chip">🎯 <b>۳۰</b> فعالیت هدفمند</span>
+          <span class="stat-chip">📚 <b>۲۵</b> تم کتاب درسی</span>
+          <span class="stat-chip">🎨 <b>۸</b> سبک بازی‌سازی</span>
+          <span class="stat-chip">⚡ <b>HTML</b> کاملاً آفلاین</span>
+        </div>
+        <div class="creator-chip" title="سازندهٔ این صفحه">
+          <span class="creator-avatar" aria-hidden="true">س‌ج</span>
+          <span>✍️ طراحی و ساخت: <b>ستایش جعفری</b></span>
+        </div>
+      </div>
+
+      <!-- Playful Hero Illustration -->
+      <div class="scene-card" id="heroScene" role="button" tabindex="0" title="برای شنیدن بوق قطار کلیک کن!" aria-label="تصویر قطار ریاضی پایه اول">
+        <svg class="scene-svg" viewBox="0 0 460 330" width="100%" height="auto" role="img">
+          <defs>
+            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ebf8f4"/>
+              <stop offset="60" stop-color="#fef8ec"/>
+              <stop offset="100" stop-color="#fff1dc"/>
+            </linearGradient>
+            <linearGradient id="wagonA" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff844b"/><stop offset="1" stop-color="#dd581d"/>
+            </linearGradient>
+            <linearGradient id="wagonB" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#24a88b"/><stop offset="1" stop-color="#14725d"/>
+            </linearGradient>
+            <filter id="softSh" x="-10%" y="-10%" width="120%" height="120%">
+              <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#735028" flood-opacity="0.12"/>
+            </filter>
+          </defs>
+
+          <rect width="460" height="330" rx="22" fill="url(#skyGrad)"/>
+          
+          <g class="anim-sun">
+            <circle cx="390" cy="65" r="28" fill="#ffd56b" filter="url(#softSh)"/>
+            <g stroke="#f5be38" stroke-width="3" stroke-linecap="round">
+              <line x1="390" y1="26" x2="390" y2="18"/>
+              <line x1="390" y1="104" x2="390" y2="112"/>
+              <line x1="351" y1="65" x2="343" y2="65"/>
+              <line x1="429" y1="65" x2="437" y2="65"/>
+            </g>
+          </g>
+
+          <g fill="#ffffff" opacity="0.88" filter="url(#softSh)">
+            <ellipse cx="110" cy="50" rx="34" ry="16"/>
+            <ellipse cx="88" cy="54" rx="22" ry="14"/>
+            <ellipse cx="132" cy="54" rx="22" ry="14"/>
+          </g>
+
+          <g fill="#cbebe1">
+            <ellipse cx="110" cy="285" rx="145" ry="46"/>
+            <ellipse cx="340" cy="292" rx="155" ry="42"/>
+          </g>
+          <g fill="#b2dfd2"><ellipse cx="230" cy="305" rx="180" ry="38"/></g>
+
+          <g>
+            <path d="M 30 258 Q 230 252 430 258" stroke="#a38b70" stroke-width="6" fill="none"/>
+            <path d="M 30 268 Q 230 262 430 268" stroke="#a38b70" stroke-width="6" fill="none"/>
+          </g>
+
+          <g id="trainGroup" filter="url(#softSh)">
+            <rect x="290" y="160" width="105" height="74" rx="14" fill="#3b71ca" stroke="#254e92" stroke-width="3"/>
+            <rect x="345" y="132" width="44" height="42" rx="10" fill="#254e92"/>
+            <rect x="352" y="140" width="30" height="24" rx="6" fill="#e8f3ff"/>
+            <polygon points="315,160 305,138 325,138" fill="#e0662d"/>
+            <rect x="306" y="128" width="18" height="10" rx="3" fill="#e0662d"/>
+            
+            <circle class="steam-1" cx="315" cy="118" r="10" fill="#ffffff"/>
+            <circle class="steam-2" cx="310" cy="108" r="14" fill="#ffffff"/>
+            <circle class="steam-3" cx="305" cy="94" r="18" fill="#ffffff"/>
+
+            <rect x="42" y="174" width="112" height="60" rx="12" fill="#fffdf9" stroke="#d5c1a7" stroke-width="3"/>
+            <g fill="url(#wagonA)" stroke="#a13d10" stroke-width="1.5">
+              <rect x="52" y="184" width="28" height="28" rx="6"/>
+              <rect x="84" y="184" width="28" height="28" rx="6"/>
+              <rect x="116" y="184" width="28" height="28" rx="6"/>
+            </g>
+            <text x="98" y="165" font-size="22" font-weight="900" text-anchor="middle" fill="#e0662d" font-family="Vazirmatn, Tahoma">۳</text>
+
+            <circle cx="163" cy="180" r="14" fill="#ffd978" stroke="#d89622" stroke-width="2"/>
+            <text x="163" y="187" font-size="20" font-weight="900" text-anchor="middle" fill="#805307" font-family="Tahoma">＋</text>
+
+            <rect x="172" y="174" width="102" height="60" rx="12" fill="#fffdf9" stroke="#d5c1a7" stroke-width="3"/>
+            <g fill="url(#wagonB)" stroke="#0d5243" stroke-width="1.5">
+              <rect x="190" y="184" width="28" height="28" rx="6"/>
+              <rect x="226" y="184" width="28" height="28" rx="6"/>
+            </g>
+            <text x="223" y="165" font-size="22" font-weight="900" text-anchor="middle" fill="#188a72" font-family="Vazirmatn, Tahoma">۲</text>
+
+            <circle cx="282" cy="180" r="14" fill="#ffd978" stroke="#d89622" stroke-width="2"/>
+            <text x="282" y="187" font-size="20" font-weight="900" text-anchor="middle" fill="#805307" font-family="Tahoma">＝</text>
+
+            <circle cx="320" cy="195" r="16" fill="#ffd978" stroke="#b87b12" stroke-width="2.5"/>
+            <text x="320" y="202" font-size="20" font-weight="900" text-anchor="middle" fill="#714502" font-family="Vazirmatn, Tahoma">۵</text>
+
+            <g fill="#4e4336" stroke="#261f18" stroke-width="3">
+              <circle cx="68" cy="238" r="11"/><circle cx="128" cy="238" r="11"/>
+              <circle cx="196" cy="238" r="11"/><circle cx="250" cy="238" r="11"/>
+              <circle cx="315" cy="238" r="13"/><circle cx="365" cy="238" r="13"/>
+            </g>
+          </g>
+
+          <g filter="url(#softSh)">
+            <g stroke="#7158a8" stroke-width="4.5" stroke-linecap="round">
+              <line x1="32" y1="88" x2="32" y2="122"/>
+              <line x1="46" y1="88" x2="46" y2="122"/>
+              <line x1="60" y1="88" x2="60" y2="122"/>
+              <line x1="74" y1="88" x2="74" y2="122"/>
+              <line x1="26" y1="120" x2="80" y2="90"/>
+            </g>
+            <rect x="28" y="62" width="48" height="22" rx="7" fill="#f2eefa" stroke="#cbbbe8" stroke-width="1.5"/>
+            <text x="52" y="78" font-size="14" font-weight="900" text-anchor="middle" fill="#7158a8" font-family="Vazirmatn, Tahoma">چوب‌خط</text>
+          </g>
+
+          <g class="anim-float">
+            <ellipse cx="205" cy="70" rx="18" ry="22" fill="#ff7f7f" filter="url(#softSh)"/>
+            <text x="205" y="76" font-size="17" font-weight="900" text-anchor="middle" fill="#ffffff" font-family="Vazirmatn, Tahoma">۱۰</text>
+          </g>
+          <g class="anim-float-delay">
+            <ellipse cx="245" cy="60" rx="16" ry="20" fill="#4ea5e8" filter="url(#softSh)"/>
+            <text x="245" y="66" font-size="16" font-weight="900" text-anchor="middle" fill="#ffffff" font-family="Vazirmatn, Tahoma">۱</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       NEW: INTERACTIVE 25-THEME HORIZONTAL NAVIGATOR RAIL
+       ========================================================= -->
+  <div class="theme-rail-section" id="themeRailSection">
+    <div class="theme-rail-header">
+      <div class="theme-rail-title">
+        <span>📖</span>
+        <span>پیمایش سریع تم‌های کتاب درسی (تم ۱ تا ۲۵)</span>
+      </div>
+      <span class="theme-rail-note" id="pageNote">روی هر تم بزنید تا فعالیت‌های همان تم نمایش داده شود</span>
+    </div>
+    <div class="theme-rail-scroll" id="themeRail"></div>
+  </div>
+
+  <!-- =========================================================
+       REVAMPED FILTER & SEARCH COMMAND CENTER
+       ========================================================= -->
+  <section id="library" style="padding:0;">
+    <div class="filter-center">
+      <!-- Search Row -->
+      <div class="search-row">
+        <select class="search-scope-select" id="searchScope" title="دامنهٔ جست‌وجو">
+          <option value="all">🔍 جست‌وجو در همه</option>
+          <option value="title">📌 فقط در عنوان</option>
+          <option value="page">📄 بر اساس صفحه / تم</option>
+          <option value="goal">🎯 در هدف آموزشی</option>
+        </select>
+
+        <div class="search-input-wrap">
+          <span class="search-icon-inside">🔍</span>
+          <input id="q" type="search" placeholder="عبارت یا شماره صفحه را بنویسید (مثلاً: چوب‌خط، تقارن، ساعت، جمع، ۱۶...)">
+          <button type="button" class="search-clear-btn" id="btnSearchClear" title="پاک‌کردن">✕</button>
+        </div>
+      </div>
+
+      <!-- Quick Search Suggestions -->
+      <div class="quick-search-tags">
+        <span class="label">برچسب‌های پرتکرار:</span>
+        <button type="button" class="search-tag-btn" data-search="چوب‌خط">چوب‌خط</button>
+        <button type="button" class="search-tag-btn" data-search="جمع">جمع و تفریق</button>
+        <button type="button" class="search-tag-btn" data-search="ساعت">ساعت</button>
+        <button type="button" class="search-tag-btn" data-search="تقارن">تقارن</button>
+        <button type="button" class="search-tag-btn" data-search="شگفت‌انگیز">مربع شگفت‌انگیز</button>
+        <button type="button" class="search-tag-btn" data-search="الگو">الگویابی</button>
+        <button type="button" class="search-tag-btn" data-search="ارزش مکانی">ارزش مکانی</button>
+        <button type="button" class="search-tag-btn" data-search="۱۰">عدد ۱۰</button>
+      </div>
+
+      <!-- Interactive Multi-Row Filter Chips -->
+      <div class="filter-matrix">
+        <!-- Row 1: Semester Filter -->
+        <div class="filter-group-row">
+          <span class="filter-group-label">📅 بازه زمانی:</span>
+          <div class="filter-chips-wrap" id="semesterChips">
+            <button type="button" class="f-chip" data-semester="all" aria-pressed="true">✨ همهٔ سال (تم ۱ تا ۲۵)</button>
+            <button type="button" class="f-chip" data-semester="s1" aria-pressed="false">🍂 نیم‌سال اول (تم ۱ تا ۱۲)</button>
+            <button type="button" class="f-chip" data-semester="s2" aria-pressed="false">🌱 نیم‌سال دوم (تم ۱۳ تا ۲۵)</button>
+          </div>
+        </div>
+
+        <!-- Row 2: Content Kind Filter -->
+        <div class="filter-group-row">
+          <span class="filter-group-label">📗 نوع فعالیت:</span>
+          <div class="filter-chips-wrap" id="kindChips">
+            <button type="button" class="f-chip" data-kind="all" aria-pressed="true">همهٔ ۳۰ فعالیت</button>
+            <button type="button" class="f-chip" data-kind="lesson" aria-pressed="false">📗 درس‌ها</button>
+            <button type="button" class="f-chip" data-kind="solve" aria-pressed="false">🧩 حل مسئله</button>
+            <button type="button" class="f-chip" data-kind="review" aria-pressed="false">🔄 مرور تم‌ها</button>
+            <button type="button" class="f-chip" id="favChip" aria-pressed="false">★ ذخیره‌شده‌ها</button>
+          </div>
+        </div>
+
+        <!-- Row 3: Math Skills Filter -->
+        <div class="filter-group-row">
+          <span class="filter-group-label">🎯 مهارت ریاضی:</span>
+          <div class="filter-chips-wrap" id="skillChips"></div>
+        </div>
+
+        <!-- Row 4: Game Style Filter -->
+        <div class="filter-group-row">
+          <span class="filter-group-label">🎨 سبک بازی:</span>
+          <div class="filter-chips-wrap" id="styleChips"></div>
+        </div>
+      </div>
+
+      <!-- Active Filters Bar -->
+      <div class="active-filters-bar" id="activeFiltersBar" hidden>
+        <span class="lbl">فیلترهای اعمال‌شده:</span>
+        <div id="activeTagsContainer" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+        <button type="button" class="btn-reset-all" id="btnResetAll">↺ بازنشانی همه فیلترها</button>
+      </div>
+    </div>
+
+    <!-- Workspace Meta Bar: Count, Sort, and View Mode Switcher -->
+    <div class="workspace-meta-bar">
+      <span id="countInfo">در حال بارگذاری فعالیت‌ها...</span>
+      
+      <div class="view-controls">
+        <label for="fSort" style="font-size:0.84rem;">ترتیب:</label>
+        <select id="fSort" style="min-height:36px;padding:4px 10px;border-radius:var(--r-sm);font-weight:700;font-size:0.84rem;">
+          <option value="theme">ترتیب تم‌های کتاب</option>
+          <option value="page">شمارهٔ صفحه کتاب</option>
+          <option value="title">الفبایی عنوان</option>
+        </select>
+
+        <span style="color:var(--line-dark);">|</span>
+
+        <!-- View Mode Switcher -->
+        <button type="button" class="view-btn active" id="btnViewGrid" title="نمای شبکه‌ای کارتی">⊞ کارتی</button>
+        <button type="button" class="view-btn" id="btnViewList" title="نمای فهرستی فشرده">☰ فهرستی</button>
+      </div>
+    </div>
+
+    <!-- Cards Container (Grid / List) -->
+    <div class="cards-grid" id="cards"></div>
+
+    <!-- Empty State -->
+    <div class="empty" id="empty" hidden>
+      <div class="empty-icon">🔎</div>
+      <h3 style="margin:0;font-size:1.15rem;">هیچ فعالیتی با این فیلترها پیدا نشد</h3>
+      <p style="margin:0;max-width:440px;">می‌توانید فیلترهای تم، سبک یا مهارت را حذف کنید یا عبارت دیگری را جست‌وجو نمایید.</p>
+      <button class="btn-primary" type="button" id="btnShowAll" style="margin-top:6px;">نمایش همهٔ ۳۰ فعالیت</button>
+    </div>
+
+    <!-- Pagination Button -->
+    <div style="display:flex;justify-content:center;margin-top:22px;">
+      <button id="btnMore" type="button" class="btn-gold" style="font-size:1rem;padding:12px 28px;">
+        نمایش فعالیت‌های بیشتر ↓
+      </button>
+    </div>
+  </section>
+
+  <!-- Section: How-to Roadmap -->
+  <section class="howto-section" id="howto">
+    <div style="margin-bottom:20px;">
+      <h2 style="font-size:1.45rem;font-weight:900;margin:0 0 6px;">🚀 سه گام تا یک بازیِ واقعی در کلاس</h2>
+      <p style="color:var(--ink-muted);margin:0;">
+        پرامپت، جایگزینِ طراحی آموزشیِ معلم نیست؛ بلکه سرعت و دقت ساخت بازی با هوش مصنوعی را به اوج می‌رساند.
+      </p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card" style="--step-accent:var(--teal);">
+        <div class="step-num">۱</div>
+        <h3>تنظیم و کپی پرامپت</h3>
+        <p>فعالیت دلخواه را انتخاب کنید. سبک بازی، سطح چالش و بازهٔ صفحه‌های کتاب خودتان را مشخص کرده و متن پرامپت را با یک کلیک کپی کنید.</p>
+      </div>
+
+      <div class="step-card" style="--step-accent:var(--orange);">
+        <div class="step-num">۲</div>
+        <h3>ساخت با هوش مصنوعی</h3>
+        <p>پرامپت را در یک مدل هوش مصنوعی (Claude، ChatGPT، DeepSeek یا Gemini) بچسبانید و بخواهید <b>فقط کد کامل یک فایل HTML</b> تحویل دهد.</p>
+      </div>
+
+      <div class="step-card" style="--step-accent:var(--purple);">
+        <div class="step-num">۳</div>
+        <h3>بازبینی، آزمون و اجرا</h3>
+        <p>فایل را روی گوشی یا تبلت بدون اینترنت باز کنید؛ پاسخ‌ها را خودتان یک‌بار حل کنید و سپس با پروژکتور یا تبلت در کلاس اجرا نمایید.</p>
+      </div>
+    </div>
+
+    <div class="warn-banner">
+      <span style="font-size:1.5rem;">⚠️</span>
+      <div>
+        <b>توصیهٔ مهم آموزشی:</b> کد تولیدشده را پیش از استفاده در کلاس <b>حتماً بازبینی و آزمایش</b> کنید: درستی ریاضی پاسخ‌ها، نبودِ متن‌های طولانی برای کودک ۶ ساله، کارکرد کاملاً آفلاین و هدف‌های لمسی درشت.
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Footer -->
+<footer class="site">
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:8px;">
+      <span id="brandLine" style="font-weight:800;">ساخته‌شده برای آموزگاران و دانش‌آموزان پایهٔ اول ابتدایی</span>
+      <span>
+        منبع محتوا: کتاب ریاضی (اول)، کد ۱۰۵ — 
+        <a href="https://chap.sch.ir/books/12113" target="_blank" rel="noopener">پایگاه کتاب‌های درسی ایران</a>
+      </span>
+    </div>
+    <div class="footer-credit">
+      <span class="heart" aria-hidden="true">💛</span>
+      <span>سازنده: <b>ستایش جعفری</b></span>
+    </div>
+    <p style="margin:0;font-size:0.82rem;color:var(--ink-soft);">
+      این صفحه کاملاً مستقل و آفلاین کار می‌کند؛ هیچ داده‌ای به هیچ سروری ارسال نمی‌شود و نشان‌ها و تنظیمات فقط در مرورگر شما باقی می‌مانند.
+    </p>
+  </div>
+</footer>
+
+<!-- DIALOG: PROMPT CUSTOMIZER / STUDIO -->
+<dialog id="dlgPrompt">
+  <div class="dlg">
+    <div class="dlg-head">
+      <div>
+        <h3 id="pTitle">تنظیم و دریافت پرامپت</h3>
+        <span class="small" id="pWhere" style="font-size:0.84rem;color:var(--ink-muted);font-weight:700;"></span>
+      </div>
+      <button type="button" class="btn-close" data-close>✕ بستن</button>
+    </div>
+
+    <div class="dlg-grid">
+      <!-- Left: Settings Pane -->
+      <div class="pane">
+        <h4><span>⚙️</span> <span>۱) مشخصات بازی</span></h4>
+        
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <label for="oName" style="font-size:0.82rem;font-weight:800;color:var(--ink-muted);">عنوان بازی</label>
+          <input id="oName" type="text">
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <label for="oStyle" style="font-size:0.82rem;font-weight:800;color:var(--ink-muted);">سبک بازی</label>
+          <select id="oStyle"></select>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <label style="font-size:0.82rem;font-weight:800;color:var(--ink-muted);">سطح چالش ریاضی</label>
+          <div class="level-pills">
+            <button type="button" class="level-btn" data-level="آسان" aria-pressed="false">آسان 🟢</button>
+            <button type="button" class="level-btn" data-level="استاندارد" aria-pressed="true">استاندارد 🟡</button>
+            <button type="button" class="level-btn" data-level="چالشی" aria-pressed="false">چالشی 🔴</button>
+          </div>
+          <input type="hidden" id="oLevel" value="استاندارد">
+        </div>
+
+        <div style="display:flex;gap:10px;">
+          <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
+            <label for="oCount" style="font-size:0.82rem;font-weight:800;color:var(--ink-muted);">تعداد چالش‌ها</label>
+            <input id="oCount" type="number" min="3" max="10" value="6">
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
+            <label for="oDur" style="font-size:0.82rem;font-weight:800;color:var(--ink-muted);">زمان جلسه (دقیقه)</label>
+            <input id="oDur" type="number" min="3" max="20" value="7">
+          </div>
+        </div>
+
+        <div style="display:flex;gap:10px;">
+          <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
+            <label for="oStart" style="font-size:0.82rem;font-weight:800;color:var(--ink-muted);">صفحهٔ شروع کتاب</label>
+            <input id="oStart" type="number" min="1" max="200">
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
+            <label for="oEnd" style="font-size:0.82rem;font-weight:800;color:var(--ink-muted);">صفحهٔ پایان کتاب</label>
+            <input id="oEnd" type="number" min="1" max="200">
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <label for="oGoal" style="font-size:0.82rem;font-weight:800;color:var(--ink-muted);">درخواست تکمیلی آموزگار (اختیاری)</label>
+          <textarea id="oGoal" placeholder="مثلاً: کلاس ما ۲۸ نفره است و تنها ۴ تبلت داریم؛ بازی نوبتی، دونفره یا کوتاه باشد."></textarea>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:2px;">
+            <button type="button" class="search-tag-btn" data-chip-goal="کلاس پرجمعیت و تبلت‌های مشترک نوبتی">تبلت مشترک</button>
+            <button type="button" class="search-tag-btn" data-chip-goal="تمرکز ویژه بر دست‌ورزی و درک دیداری">دیداری</button>
+            <button type="button" class="search-tag-btn" data-chip-goal="راهنمایی مرحله‌به‌مرحله بیشتر برای دانش‌آموزان نیازمند توجه">راهنمای ویژه</button>
+          </div>
+        </div>
+
+        <h4 style="margin-top:10px;"><span>🛡️</span> <span>۲) گزینه‌های رابط و اجرا</span></h4>
+        
+        <div class="switch-row">
+          <label for="cNoDrag">جایگزین کشیدن با دو کلیک (ویژه تبلت)</label>
+          <label class="toggle">
+            <input type="checkbox" id="cNoDrag" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="switch-row">
+          <label for="cReport">گزارش بی‌نام معلم در پایان</label>
+          <label class="toggle">
+            <input type="checkbox" id="cReport" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="switch-row">
+          <label for="cSound">صدا روشن باشد (پیش‌فرض خاموش)</label>
+          <label class="toggle">
+            <input type="checkbox" id="cSound">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="switch-row">
+          <label for="cTimer">زمان‌سنج نمایش داده شود (توصیه نمی‌شود)</label>
+          <label class="toggle">
+            <input type="checkbox" id="cTimer">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <button type="button" id="btnRegen" class="btn-ghost" style="margin-top:6px;width:100%;">
+          <span>↻ بازسازی متن پرامپت</span>
+        </button>
+      </div>
+
+      <!-- Right: Prompt Text Pane -->
+      <div class="pane">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+          <h4><span>📋</span> <span>۳) متن کامل پرامپت (آماده کپی)</span></h4>
+          <span class="char-badge" id="charCount">۰ نویسه</span>
+        </div>
+
+        <textarea id="promptBox" spellcheck="false" title="متن پرامپت"></textarea>
+
+        <div class="dlg-foot">
+          <span class="small" style="color:var(--ink-muted);font-size:0.84rem;">
+            💡 این متن را در چت‌بات هوش مصنوعی بچسبانید.
+          </span>
+          <div style="display:flex;gap:8px;">
+            <button type="button" class="btn-primary" id="btnCopyBig">
+              <span>📋 کپی پرامپت</span>
+            </button>
+            <button type="button" id="btnDownload">
+              <span>⬇ دانلود .txt</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="warn-banner" style="margin-top:8px;padding:10px 14px;font-size:0.84rem;background:#f3f9f7;border-color:#bfe2d7;">
+          <span>🤖</span>
+          <span>
+            <b>دستور به مدل:</b> در پیام خود بنویسید: «فقط کد کامل یک فایل HTML مستقل بده». اگر پاسخ ناقص ماند، بنویسید «ادامهٔ کد را از همان‌جا بده».
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- DIALOG: SAMPLE GAME MODAL -->
+<dialog id="dlgGame">
+  <div class="dlg" style="max-width:880px;">
+    <div class="dlg-head">
+      <div>
+        <h3 style="display:flex;align-items:center;gap:8px;">
+          <span>🎮</span>
+          <span>نمونهٔ ساخته‌شده: قطارِ واگن‌های دوست (تم ۳)</span>
+        </h3>
+        <span style="font-size:0.84rem;color:var(--ink-muted);">
+          مفهوم اولیهٔ جمع • صفحه‌های ۱۶ تا ۲۰ کتاب درسی • تک‌فایل و آفلاین
+        </span>
+      </div>
+      <button type="button" class="btn-close" data-close>✕ بستن</button>
+    </div>
+
+    <div class="game-arcade-wrap">
+      <div class="arcade-bar">
+        <div class="arcade-dots">
+          <span class="arcade-dot" style="background:#ff5f56;"></span>
+          <span class="arcade-dot" style="background:#ffbd2e;"></span>
+          <span class="arcade-dot" style="background:#27c93f;"></span>
+        </div>
+        <span>ریاضی اول ابتدایی • بازی تک‌فایل و آفلاین</span>
+        <span>قاب شبیه‌ساز تبلت</span>
+      </div>
+      <iframe id="gameFrame" class="game-frame" title="نمونهٔ بازی ریاضی تم ۳" sandbox="allow-scripts allow-modals allow-downloads"></iframe>
+    </div>
+
+    <div class="dlg-foot">
+      <span class="small" style="color:var(--ink-muted);">
+        این بازی بدون اتصال به اینترنت و بدون ارسال هیچ داده‌ای اجرا می‌شود.
+      </span>
+      <button type="button" id="btnDlGame" class="btn-gold">
+        <span>⬇ دانلود فایل HTML بازی</span>
+      </button>
+    </div>
+  </div>
+</dialog>
+
+<!-- DIALOG: TEACHER BRAND -->
+<dialog id="dlgBrand">
+  <div class="dlg" style="max-width:520px;">
+    <div class="dlg-head">
+      <h3>✍️ نام و برند شما</h3>
+      <button type="button" class="btn-close" data-close>✕ بستن</button>
+    </div>
+    <p style="margin:0;font-size:0.88rem;color:var(--ink-muted);">
+      این مشخصات در سربرگ پرامپت‌های تولیدی و پایین صفحه قرار می‌گیرد تا فایل‌ها با نام خودتان یا مدرسه‌تان ثبت شوند.
+    </p>
+
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <label for="bName" style="font-size:0.84rem;font-weight:800;">نام شما یا نام آموزشگاه</label>
+      <input id="bName" type="text" placeholder="مثلاً: آموزگار پایهٔ اول − دبستان فرهنگ">
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <label for="bContact" style="font-size:0.84rem;font-weight:800;">راه ارتباطی یا نشانی اینترنتی (اختیاری)</label>
+      <input id="bContact" type="text" placeholder="مثلاً: شماره تماس، کانال شاد یا وبسایت">
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:10px;">
+      <button type="button" id="btnClearBrand" class="btn-ghost">پاک‌کردن</button>
+      <button type="button" class="btn-primary" id="btnSaveBrand">ذخیره مشخصات</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- Toast Message Container -->
+<div id="toast" role="status" aria-live="polite"></div>
+
+<!-- JAVASCRIPT LOGIC -->
+<script>
+"use strict";
+
+const DATA = {"meta": {"grade": "پایهٔ اول دبستان", "book": "ریاضی (اول)، کد ۱۰۵، سازمان پژوهش و برنامه‌ریزی آموزشی", "pageNote": "بازهٔ صفحه‌ها بر پایهٔ فهرست چاپ ۱۴۰۲ استخراج شده است؛ در چاپ ۱۴۰۴−۱۴۰۵ ممکن است یکی دو صفحه جابه‌جا شود. در پنجرهٔ هر فعالیت می‌توانید شمارهٔ صفحه را با کتاب خودتان تطبیق دهید.", "units": "کتاب ریاضی پایهٔ اول به ۲۵ «تم» تقسیم شده است (نه ۸ فصل مثل پایهٔ دوم)."}, "skills": ["شمارش و عدد", "جمع و تفریق", "مقایسه", "ارزش مکانی", "الگو", "هندسه و تقارن", "اندازه‌گیری", "زمان", "آمار و نمودار", "حل مسئله"], "themes": [{"n": 1, "short": "شمارش، الگو، نمودار", "topic": "الگویابی، موقعیت‌یابی، شمارش، خط‌کش و نمودار ستونی", "start": 2, "end": 7}, {"n": 2, "short": "اضافه و کم کردن", "topic": "اضافه و کم کردن، مربع شگفت‌انگیز", "start": 9, "end": 14}, {"n": 3, "short": "مفهوم جمع", "topic": "مفهوم اولیهٔ عمل جمع", "start": 16, "end": 20}, {"n": 4, "short": "گوشه و لبه، چوب‌خط", "topic": "گوشه و لبهٔ اشکال هندسی، چوب‌خط برای شمارش", "start": 23, "end": 28}, {"n": 5, "short": "جمع و تفریق با چوب‌خط", "topic": "جمع و تفریق با چوب‌خط", "start": 30, "end": 35}, {"n": 6, "short": "چینه و انگشت", "topic": "جمع و تفریق با چینه و انگشتان دست", "start": 37, "end": 42}, {"n": 7, "short": "عدد ۱ و ۲", "topic": "آشنایی با عدد ۱ و ۲", "start": 44, "end": 49}, {"n": 8, "short": "عدد ۳ و ۴، بلندی", "topic": "آشنایی با عدد ۳ و ۴ و اندازه‌گیری بلندی اجسام", "start": 52, "end": 56}, {"n": 9, "short": "صفر و ۵، تقارن", "topic": "آشنایی با ۰ و ۵ و تقارن", "start": 58, "end": 63}, {"n": 10, "short": "عدد ۶ و ۷، مقایسه", "topic": "آشنایی با عدد ۶ و ۷ و مقایسه کردن مجموعه‌ها", "start": 65, "end": 70}, {"n": 11, "short": "تساوی و عدد ۸", "topic": "تساوی مجموعه‌ها و آشنایی با عدد ۸", "start": 72, "end": 76}, {"n": 12, "short": "مقایسه و عدد ۹", "topic": "مقایسهٔ عددها، آشنایی با عدد ۹ و شناخت عدد بیشتر", "start": 79, "end": 84}, {"n": 13, "short": "نماد جمع", "topic": "آشنایی با نماد جمع و حاصل آن و مفهوم ترکیبی اعداد ۲ تا ۱۰", "start": 86, "end": 90}, {"n": 14, "short": "نماد تفریق", "topic": "آشنایی با نماد تفریق و مقایسهٔ اندازه‌ها", "start": 93, "end": 97}, {"n": 15, "short": "دسته‌بندی و ارزش مکانی", "topic": "مفهوم دسته‌بندی و آشنایی با مفهوم ارزش مکانی", "start": 100, "end": 104}, {"n": 16, "short": "عددهای ۱۱ تا ۱۹", "topic": "شناخت اعداد دو رقمی ۱۱ تا ۱۹", "start": 107, "end": 111}, {"n": 17, "short": "محور و مفهوم «بین»", "topic": "جمع و تفریق‌های ترکیبی با چوب‌خط و محور، مفهوم بین", "start": 114, "end": 118}, {"n": 18, "short": "شمارش چندتایی", "topic": "شمردن چندتایی", "start": 121, "end": 126}, {"n": 19, "short": "مضرب‌های ۱۰", "topic": "عددهای دو رقمی مضرب ۱۰ و حل مسئله با چینه و محور", "start": 128, "end": 133}, {"n": 20, "short": "عددهای دو رقمی", "topic": "آموزش عددهای دو رقمی و کسب مهارت در شمارش اعداد", "start": 135, "end": 140}, {"n": 21, "short": "جمع چند عدد و ساعت", "topic": "مهارت جمع چند عدد، ساعت و درک درست از زمان", "start": 142, "end": 147}, {"n": 22, "short": "الگوها و تقویم", "topic": "شمردن الگوهای ۲ و ۵ و ۶ و ۷، آشنایی با تقویم", "start": 149, "end": 154}, {"n": 23, "short": "الگوی ۸تایی و ماشین‌حساب", "topic": "شمردن با الگوهای ۸تایی، شمردن رو به جلو و عقب ۵تایی و آشنایی با ماشین‌حساب", "start": 156, "end": 161}, {"n": 24, "short": "مسئلهٔ چند مرحله‌ای", "topic": "حل مسئله‌های چند مرحله‌ای و ساعت تقریبی", "start": 163, "end": 168}, {"n": 25, "short": "عدد ۱۰۰ و اطلاعات مسئله", "topic": "آشنایی با عدد ۱۰۰ و کافی بودن اطلاعات مسئله", "start": 170, "end": 174}], "styles": [{"id": 0, "name": "پرش قارچی", "tag": "سکوبازی آرام", "icon": "🍄", "color": "#378f75", "desc": "یک سکوبازی خیلی ساده و آرام با شخصیتِ کاملاً مستقل؛ پرش‌های کوتاه، مسیر روشن و بدون دشمن.", "rules": "دوربین جانبی با سکوهای پهن و فاصلهٔ کم بساز. سرعت پایین و پرش قابل پیش‌بینی باشد. در هر ایستگاه یک چالش همین تم حل شود و تا حل نشدن، پل بعدی ساخته نشود. هنگام حل چالش، حرکت و خطر متوقف شود. افتادن فقط به آخرین ایستگاه برگردد و امتیاز یادگیری کم نشود. کنترل با کلیدهای جهت و Space و همچنین سه دکمهٔ لمسی درشت (چپ، راست، پرش). حتماً دکمهٔ «رفتن به ایستگاه بعد بدون پرش» برای دانش‌آموزی که مهارت حرکتی ندارد وجود داشته باشد."}, {"id": 1, "name": "اتاق رمز", "tag": "معمایی", "icon": "🗝️", "color": "#7160a6", "desc": "سه اتاق روشن و کودکانه؛ قفل‌ها با فهم ریاضی باز می‌شوند، نه با حدس زدن.", "rules": "سه اتاق بدون ترس و بدون تاریکی بساز. قفل‌ها تصویری باشند (شکل، رنگ، تعداد) نه متن طولانی. هر چالش حل‌شده یک قطعهٔ رمز بدهد و رمز از پاسخ اعتبارسنجی‌شده ساخته شود. دفترچهٔ سرنخ تصویری، سه پلهٔ راهنما و امکان برگشت به اتاق قبلی وجود داشته باشد. هیچ قفل زمانی و هیچ بن‌بست برگشت‌ناپذیر نساز."}, {"id": 2, "name": "سفر فضایی", "tag": "ماجراجویی", "icon": "🚀", "color": "#4a67ad", "desc": "ماموریت‌های کوتاه در یک منظومهٔ رنگارنگ؛ هر سیاره یک گام یادگیری.", "rules": "هر سیاره یک گام از همین تم باشد و با ابزار عینی همان تم (چینه، چوب‌خط، محور، دستهٔ ده‌تایی) سوخت آموزشی گرفته شود. نقشهٔ مأموریت و سه نشان پیشرفت دیده شود. پرواز فقط پاداش کوتاه پس از فهم پاسخ است؛ تیراندازی، دشمن و فشار زمان نداشته باش. ستاره‌ها و مدارها با SVG یا Canvas ساخته شوند."}, {"id": 3, "name": "چینه‌سازی", "tag": "ساختنی", "icon": "🧱", "color": "#bc8042", "desc": "ساختن مدل ریاضی با چینه و بلوک، به‌جای انتخاب صرفِ گزینه.", "rules": "یک صفحهٔ ساخت شبکه‌ای با قطعات درشت و چسبیدن به شبکه بساز. قطعات همان ابزار کتاب باشند: چینه، چوب‌خط، دستهٔ ده‌تایی، شکل هندسی یا واحد اندازه‌گیری. کشیدن‌ورهاکردن باید جایگزین «انتخاب قطعه، بعد انتخاب خانه» داشته باشد. اعتبارسنجی بر پایهٔ رابطهٔ ریاضی باشد نه مختصات یک پاسخ ثابت؛ همهٔ ساخت‌های معادل درست پذیرفته شوند. دکمهٔ برگشت یک گام و پاک‌کردن با تأیید وجود داشته باشد."}, {"id": 4, "name": "جزیرهٔ گنج", "tag": "اکتشافی", "icon": "🧭", "color": "#289493", "desc": "نقشه‌ای داستانی با ایستگاه‌های کشف و صندوق دانایی.", "rules": "نقشه‌ای با ۵ ایستگاه متصل بساز. ترتیب هر ایستگاه: تجربهٔ عینی، تمرین هدایت‌شده، چالش مستقل. کودک بتواند هر ایستگاه را دوباره تمرین کند. صندوق پایانی به توضیح یا ساخت درست باز شود، نه به جمع‌کردن سکه. پاداش کوتاه و قابل ردکردن باشد."}, {"id": 5, "name": "شهر کوچک", "tag": "شبیه‌سازی", "icon": "🏡", "color": "#bb7257", "desc": "کلاس، خانه، بازارچه و کارگاه؛ ریاضی در زندگی روزمره.", "rules": "یک محیط کوچک روزمره بساز: کلاس، حیاط، آشپزخانه یا غرفهٔ بازارچه. هر سفارش فقط یک مفهوم اصلی داشته باشد و با تصویر گفته شود. پول واقعی و واحد ریال در پایهٔ اول استفاده نشود؛ به‌جای آن ژتون یا مهرهٔ شمارش. داده‌ها ساختگی و بی‌نام باشند. برای پاسخ اشتباه، بدهی، تنبیه یا از دست دادن دارایی نساز."}, {"id": 6, "name": "رالی دانایی", "tag": "مسابقه با خود", "icon": "🏁", "color": "#c26b6c", "desc": "مسیر کوتاه مسابقه‌ای که فقط با رکورد قبلی خودِ کودک مقایسه می‌شود.", "rules": "مسیر آرام با ایستگاه‌های توقف کامل بساز؛ در هر ایستگاه خودرو می‌ایستد تا کودک چالش را با ابزار مناسب حل کند. پاسخ درست مسیر را جلو می‌برد و خطا به تکرار آموزشی می‌رسد، نه عقب‌افتادن تحقیرآمیز. زمان‌سنج پیش‌فرض خاموش باشد. هیچ جدول رتبه‌بندی با نام کودکان ساخته نشود."}, {"id": 7, "name": "باغ جادویی", "tag": "خلاقانه", "icon": "🌷", "color": "#ae6191", "desc": "باغی آرام که با ساختن مدل درست ریاضی شکوفا می‌شود.", "rules": "بوم باغ با گل‌ها، کاشی‌های درشت و مسیرهای ساده بساز. ابزار باغ دقیقاً مفهوم همین تم را نشان دهد: گل‌ها مهرهٔ شمارش یا دادهٔ نمودار باشند و کاشی‌ها برای تقارن. پیشرفت با روییدن کوتاه گل نمایش داده شود. پاسخ‌های معادل پذیرفته شوند و در پایان کودک بتواند باغ را آزادانه تزئین کند؛ زیبایی اثر، امتیاز ریاضی را تغییر ندهد."}], "activities": [{"id": 1, "theme": 1, "kind": "lesson", "style": 7, "skills": ["شمارش و عدد", "آمار و نمودار", "الگو"], "num": "۰ تا ۱۰", "title": "باغِ شمارشِ پروانه‌ها", "goal": "شمارش یک‌به‌یک تا ۱۰، ثبت تعداد با چوب‌خط و نشان‌دادن همان تعداد در نمودار ستونی ساده", "mechanic": "اشیای پراکنده در باغ را با لمس نشان‌دار کن؛ شمارنده برای هر شیء فقط یک بار بالا برود. سپس همان تعداد را با چوب‌خط بچین و در پایان ستون نمودار را تا همان عدد بالا ببر. یک بخش کوتاه هم برای «ادامهٔ الگوی دو شکلی» و «بالا/پایین/چپ/راست» داشته باشد.", "question": "در باغ ۶ گل قرمز و ۴ گل زرد هست. کدام رنگ بیشتر است؟ تعداد گل‌های قرمز را با چوب‌خط نشان بده.", "answer": "قرمز بیشتر است، چون ۶ از ۴ بیشتر است. چوب‌خط ۶ می‌شود یک بستهٔ پنج‌تایی و یک خط تنها.", "note": "جای اشیا را عوض کن ولی تعداد را ثابت نگه دار تا کودک بفهمد پخش‌شدن اشیا تعداد را زیاد نمی‌کند. بستهٔ پنج‌تایی چوب‌خط را با چهار خط و یک خط مورب نشان بده."}, {"id": 2, "theme": 2, "kind": "lesson", "style": 1, "skills": ["حل مسئله", "الگو", "جمع و تفریق"], "num": "۱ تا ۵", "title": "رازِ مربع شگفت‌انگیز", "goal": "درک «یکی اضافه کن / یکی کم کن» و کامل‌کردن مربع شگفت‌انگیز ۳×۳ با قانون یکتایی در سطر و ستون", "mechanic": "در بخش اول با دو دکمهٔ درشت «یکی اضافه» و «یکی کم» تعداد مهره‌ها را تغییر بده و نتیجه را ببین. در بخش دوم شکل‌های رنگی (دایره، مثلث، مربع) را در جدول ۳×۳ بچین؛ در هر سطر و هر ستون هر شکل فقط یک بار بیاید. خطای تکراری با رنگ و لرزش کوتاه خانه مشخص شود، نه با متن.", "question": "در یک سطر مربع شگفت‌انگیز، دایره و مثلث گذاشته‌ایم. خانهٔ سوم چه شکلی باید باشد؟", "answer": "مربع؛ چون در هر سطر هر شکل فقط یک بار می‌آید و مربع هنوز در آن سطر نیست.", "note": "برای پایهٔ اول شکل رنگی بهتر از عدد است. قانون را با یک نمونهٔ حل‌شده نشان بده؛ توضیح متنی طولانی ننویس. جدول را کوچک و خانه‌ها را درشت نگه دار."}, {"id": 3, "theme": 3, "kind": "lesson", "style": 3, "skills": ["جمع و تفریق", "شمارش و عدد"], "num": "حاصل جمع تا ۶", "title": "قطارِ واگن‌های دوست", "goal": "درک جمع به‌معنای روی هم گذاشتن دو گروه و شمردن کل، بدون استفاده از نماد + و =", "mechanic": "دو واگن با چینه‌های رنگی وجود دارد. کودک با دکمهٔ «به هم بچسبان» دو واگن را یکی می‌کند، سپس روی هر چینه یک بار می‌زند تا شماره بگیرد و در پایان تعداد کل را از سه دکمهٔ عددی بزرگ انتخاب می‌کند.", "question": "واگن اول ۳ مسافر و واگن دوم ۲ مسافر دارد. وقتی واگن‌ها به هم می‌چسبند، چند مسافر داریم؟", "answer": "۵ مسافر؛ ۳ و ۲ روی هم ۵ می‌شود.", "note": "در این تم هنوز نماد + و = آموزش داده نشده است؛ روی «روی هم گذاشتن» و شمردن کل تأکید کن، نه نوشتن عبارت. اجازه بده کودک با انگشت هم بشمارد."}, {"id": 4, "theme": 4, "kind": "lesson", "style": 3, "skills": ["هندسه و تقارن", "شمارش و عدد"], "num": "۰ تا ۱۰", "title": "کارگاهِ چوب و گوشه", "goal": "ساختن شکل با چوب، شمردن لبه و گوشه و ثبت تعداد با چوب‌خط", "mechanic": "چوب‌های مجازی را روی میز کار بگذار و شکل بساز؛ هر چوب یک لبه و هر محل برخورد دو چوب یک گوشه است. شمارندهٔ لبه و گوشه با ساخت کودک به‌روز شود و همان عدد به چوب‌خط تبدیل شود. مثلث، مربع، مستطیل و دایره در دسترس باشند.", "question": "برای ساختن یک مثلث چند چوب لازم است و مثلث چند گوشه دارد؟", "answer": "۳ چوب و ۳ گوشه.", "note": "دایره لبهٔ راست و گوشه ندارد. اگر کودک دایره را «یک لبه» شمرد، با انگشت روی مسیر خمیده حرکت کن و تفاوت را نشان بده؛ پاسخ را فقط رد نکن."}, {"id": 5, "theme": 5, "kind": "lesson", "style": 6, "skills": ["جمع و تفریق", "شمارش و عدد"], "num": "۰ تا ۱۰", "title": "کارخانهٔ چوب‌خط", "goal": "نمایش جمع و تفریق با چوب‌خط و خواندن بستهٔ پنج‌تایی بدون شمردن یکی‌یکی", "mechanic": "چوب‌خط‌ها را در بسته‌های پنج‌تایی بچین. برای جمع، دو گروه چوب‌خط را کنار هم بگذار و کل را بشمار؛ برای تفریق، روی خط‌ها خط بزن (پاک نکن) و باقی‌مانده را بشمار. نمایش هم‌زمان عدد و چوب‌خط.", "question": "۸ چوب‌خط داریم و روی ۳ تا خط می‌زنیم. چند چوب‌خط باقی می‌ماند؟", "answer": "۵ چوب‌خط؛ ۸ منهای ۳ برابر ۵ است.", "note": "خط‌زدن به‌جای حذف کامل، مفهوم «کم شدن» را دیدنی می‌کند. کودک باید ۵ را یک‌جا به‌صورت بسته ببیند، نه با شمارش دوباره."}, {"id": 6, "theme": 6, "kind": "lesson", "style": 3, "skills": ["جمع و تفریق"], "num": "۰ تا ۱۰", "title": "برجِ چینه‌های رنگی", "goal": "جمع و تفریق با چینه و انگشتان دست و دیدن اینکه دو راهبرد به یک پاسخ می‌رسند", "mechanic": "دو برج چینه با رنگ متفاوت بساز و روی هم بگذار؛ ارتفاع برج حاصل جمع است. برای تفریق چند چینه از بالای برج بردار. کنار برج، تصویر دست‌ها همان تعداد انگشت را نشان دهد تا کودک راهبرد خودش را مقایسه کند.", "question": "برج آبی ۴ چینه و برج زرد ۳ چینه دارد. برج مشترک چند چینه می‌شود؟", "answer": "۷ چینه؛ ۴ و ۳ روی هم ۷ می‌شود.", "note": "شمردن با انگشت را رد نکن؛ راهبرد دقیق‌تر را کنار آن نشان بده. اگر کودک همه را از یک بشمارد اشکالی ندارد، ولی شمارش از عدد بزرگ‌تر را هم یک بار نمایش بده."}, {"id": 7, "theme": 7, "kind": "lesson", "style": 7, "skills": ["شمارش و عدد"], "num": "۱ تا ۲", "title": "دوستانِ یک و دو", "goal": "تناظر تعداد ۱ و ۲ با نماد عدد و بازشناسی شکل عدد بدون وابستگی به مهارت نوشتن", "mechanic": "کارت عدد ۱ و ۲ را به مجموعهٔ درست وصل کن (یک شیء / دو شیء). سپس مسیر نقطه‌چین عدد را با انگشت یا ماوس دنبال کن؛ مسیر فقط راهنما باشد و کیفیت خط امتیاز نگیرد. بازخورد با تصویر و صدا باشد.", "question": "یک گلدان داریم و دو گل. عدد ۲ به کدام گروه می‌خورد؟", "answer": "به گروه گل‌ها؛ چون ۲ گل داریم و فقط ۱ گلدان.", "note": "اول تعداد، بعد نماد. شکل عدد را در چند قلم و اندازه نشان بده تا کودک عدد را در یک فونت خاص حفظ نکند. تمرین نوشتن نباید امتیاز ریاضی را کم کند."}, {"id": 8, "theme": 8, "kind": "lesson", "style": 3, "skills": ["اندازه‌گیری", "شمارش و عدد", "مقایسه"], "num": "۱ تا ۴", "title": "مسابقهٔ بلندیِ درخت‌ها", "goal": "اندازه‌گیری بلندی با واحد غیراستاندارد هم‌اندازه و مقایسهٔ دو بلندی با عددهای ۳ و ۴", "mechanic": "کنار هر درخت مکعب‌های واحد را روی هم بچین تا هم‌قد درخت شود؛ تعداد مکعب‌ها بلندی است. همهٔ مکعب‌ها از یک خط پایه شروع شوند. سپس دو درخت را با عدد و واژهٔ بلندتر/کوتاه‌تر مقایسه کن.", "question": "درخت اول به بلندی ۳ مکعب و درخت دوم به بلندی ۴ مکعب است. کدام بلندتر است و چقدر؟", "answer": "درخت دوم بلندتر است؛ ۱ مکعب بلندتر.", "note": "اگر مکعب‌ها هم‌اندازه نباشند یا از پایهٔ مشترک شروع نشوند، مقایسه بی‌معنا می‌شود؛ این خطا را عمداً یک بار نشان بده و از کودک بخواه اصلاح کند."}, {"id": 9, "theme": 9, "kind": "lesson", "style": 7, "skills": ["شمارش و عدد", "هندسه و تقارن"], "num": "۰ تا ۵", "title": "گلدانِ خالی و باغِ آینه‌ها", "goal": "درک صفر به‌معنای «هیچ»، شناخت ۵ و کامل‌کردن نیمهٔ قرینهٔ یک شکل روی محور ساده", "mechanic": "در بخش اول گل‌ها را یکی‌یکی از گلدان بردار تا خالی شود و عدد ۰ دیده شود. در بخش دوم نیمهٔ پروانه را با کاشی رنگی روی شبکهٔ درشت قرینه کن؛ محور عمودی یا افقی و خانه‌های آینه‌ای راهنما باشند.", "question": "در گلدان ۵ گل بود؛ همهٔ گل‌ها را به دوستمان دادیم. چند گل در گلدان ماند؟", "answer": "۰ گل؛ هیچ گل نمانده است.", "note": "صفر یعنی «هیچ»، نه «جای خالیِ نامعلوم». برای تقارن فقط محور عمودی/افقی و شبکهٔ درشت؛ تقارن چرخشی و محور مورب خارج از دامنهٔ پایهٔ اول است."}, {"id": 10, "theme": 10, "kind": "lesson", "style": 5, "skills": ["مقایسه", "شمارش و عدد"], "num": "۰ تا ۷", "title": "ترازوی دو سبد", "goal": "شناخت ۶ و ۷ و مقایسهٔ دو مجموعه با تناظر یک‌به‌یک و واژه‌های بیشتر/کمتر/مساوی", "mechanic": "دو سبد را با میوه پر کن؛ ترازوی تصویری به سمت پرتعدادتر خم می‌شود. کودک میوه‌ها را دو‌به‌دو جفت می‌کند تا باقی‌مانده دیده شود، سپس واژهٔ درست را انتخاب می‌کند.", "question": "سبد اول ۶ سیب و سبد دوم ۷ سیب دارد. کدام سبد سیب بیشتری دارد؟", "answer": "سبد دوم؛ ۷ از ۶ بیشتر است.", "note": "مقایسه را با جفت‌کردن یک‌به‌یک نشان بده تا دلیل دیده شود، نه فقط حفظ «عدد بزرگ‌تر». اگر علامت > و < را نشان دادی، معنایش را هم‌زمان با تصویر بگو."}, {"id": 11, "theme": 11, "kind": "lesson", "style": 4, "skills": ["مقایسه", "جمع و تفریق", "شمارش و عدد"], "num": "۰ تا ۸", "title": "جفت‌های برابر", "goal": "درک تساوی دو مجموعه، شناخت عدد ۸ و یافتن تعداد لازم برای برابر شدن", "mechanic": "دو ردیف مهره وجود دارد؛ کودک مهره اضافه یا کم می‌کند تا دو ردیف برابر شود و ترازو متعادل گردد. رنگ و نوع مهره‌ها متفاوت باشد تا تساوی فقط به تعداد وابسته بماند.", "question": "ردیف بالا ۸ مهره و ردیف پایین ۵ مهره دارد. چند مهره به ردیف پایین اضافه کنیم تا برابر شوند؟", "answer": "۳ مهره؛ چون ۵ و ۳ روی هم ۸ می‌شود.", "note": "تساوی یعنی «همان تعداد»، نه «همان شکل یا رنگ». حتماً نمونه‌ای بگذار که دو مجموعهٔ ناهمگون تعداد برابر دارند."}, {"id": 12, "theme": 12, "kind": "lesson", "style": 0, "skills": ["مقایسه", "شمارش و عدد"], "num": "۰ تا ۹", "title": "نردبانِ عددها تا ۹", "goal": "ترتیب عددهای ۰ تا ۹، شناخت ۹ و یافتن عدد بیشتر/کمتر و عدد بین دو عدد", "mechanic": "روی پله‌های ۰ تا ۹ حرکت کن؛ هر پله عددش را با تصویر و شمارنده نشان دهد. چالش‌ها: «یک پله بالاتر از ۷»، «بین ۶ و ۸»، «کدام عدد از ۸ کمتر است». حالت بدون پرش با کلیک روی پله الزامی است.", "question": "کدام عدد از ۷ بیشتر و از ۹ کمتر است؟", "answer": "عدد ۸.", "note": "ترتیب باید روی محور دیده شود، نه فقط شنیده. پرش نباید شرط پاسخ‌دادن باشد؛ مهارت حرکتی از امتیاز ریاضی جدا بماند."}, {"id": 13, "theme": 13, "kind": "lesson", "style": 3, "skills": ["جمع و تفریق", "الگو"], "num": "۲ تا ۱۰", "title": "کارخانهٔ ترکیب‌های عدد", "goal": "ساختن همهٔ ترکیب‌های یک عدد تا ۱۰ و نوشتن عبارت با نماد + و = و یافتن جای خالی", "mechanic": "با مهره‌های دو رنگ همهٔ ترکیب‌های یک عدد را بساز (مثلاً ۷ = ۱+۶، ۲+۵، …). هر ترکیب در جدول ترکیب‌ها ثبت شود و عبارت با نماد کامل گردد. جای خالی گاهی در سمت چپ و گاهی در سمت راست تساوی باشد.", "question": "۴ + ▢ = ۹ ؛ جای خالی چه عددی است؟", "answer": "۵؛ چون ۴ + ۵ = ۹.", "note": "همهٔ ترکیب‌های درست پذیرفته شوند؛ کودک را به یک ترکیب دلخواه محدود نکن. جهت نوشتن عبارت ریاضی چپ‌به‌راست و در ناحیهٔ جدا از متن فارسی باشد."}, {"id": 14, "theme": 14, "kind": "lesson", "style": 1, "skills": ["جمع و تفریق", "اندازه‌گیری", "مقایسه"], "num": "۰ تا ۱۰", "title": "چند تا کم شد؟", "goal": "شناخت نماد تفریق در دو معنای «برداشتن» و «مقایسه» و مقایسهٔ دو اندازه با واحد یکسان", "mechanic": "از یک مجموعهٔ شمرده‌شده تعدادی را با کلیک کنار بگذار (محو ملایم، نه حذف ناگهانی) و عبارت تفریق را کامل کن. بخش دوم: دو نوار کاغذی را با مکعب‌های یکسان اندازه بگیر و بگو کدام بلندتر است و چند واحد اختلاف دارد.", "question": "۹ بادکنک داشتیم و ۴ تا پرواز کرد. چند بادکنک مانده است؟ عبارت را کامل کن: ۹ − ۴ = ▢", "answer": "۵ بادکنک؛ ۹ − ۴ = ۵.", "note": "تفریق را فقط «برداشتن» نشان نده؛ حالت «چند تا بیشتر است؟» را هم بساز. برای مقایسهٔ طول، واحد هر دو نوار باید یکسان باشد."}, {"id": 15, "theme": 15, "kind": "lesson", "style": 3, "skills": ["ارزش مکانی", "شمارش و عدد"], "num": "۰ تا ۲۰", "title": "کارگاهِ دسته‌های ده‌تایی", "goal": "دسته‌بندی اشیاء و درک تبدیل ۱۰ یکی به ۱ ده‌تایی و خواندن عدد به‌صورت «چند ده‌تایی و چند یکی»", "mechanic": "مهره‌ها را بکش و در قالب ده‌تایی جا بده؛ هر بار که ۱۰ یکی جمع شد، با انیمیشن به یک میلهٔ ده‌تایی تبدیل شود. نمایش هم‌زمان: تصویر دسته‌ها، جملهٔ «۱ ده‌تایی و ۳ یکی» و عدد ۱۳.", "question": "۱۴ مهره داریم. چند دستهٔ ده‌تایی و چند یکی می‌شود؟", "answer": "۱ دستهٔ ده‌تایی و ۴ یکی.", "note": "عدد ۱۴ را «یک و چهار» نخوان؛ همیشه «یک ده‌تایی و چهار یکی». تبدیل ۱۰ یکی به یک ده‌تایی باید دیده شود، نه فقط گفته."}, {"id": 16, "theme": 16, "kind": "lesson", "style": 5, "skills": ["ارزش مکانی", "شمارش و عدد"], "num": "۱۱ تا ۱۹", "title": "قطارِ عددهای ۱۱ تا ۱۹", "goal": "ساختن، خواندن و بازشدن عددهای ۱۱ تا ۱۹ با یک ده‌تایی و چند یکی", "mechanic": "هر واگن یک عدد دو رقمی دارد؛ کودک با گذاشتن یک میلهٔ ده‌تایی و چند مهرهٔ یکی، عدد واگن را می‌سازد. با دکمهٔ «باز کن» عدد به ده‌تایی و یکی تجزیه شود و با صدا خوانده شود.", "question": "عددی که ۱ ده‌تایی و ۷ یکی دارد چند است؟", "answer": "۱۷.", "note": "تفاوت ۱۷ و ۷۱ را با جابه‌جایی رقم‌ها نشان بده. در این تم فقط ۱۱ تا ۱۹ کار شود؛ عددهای بزرگ‌تر را زودتر وارد نکن."}, {"id": 17, "theme": 17, "kind": "lesson", "style": 0, "skills": ["جمع و تفریق", "مقایسه"], "num": "۰ تا ۲۰", "title": "پرش‌های روی محور", "goal": "جمع و تفریق روی محور و چوب‌خط و درک مفهوم «بین» دو عدد", "mechanic": "روی محور ۰ تا ۲۰ با پرش‌های یک‌واحدی جلو و عقب برو؛ هر پرش شماره بگیرد و عبارت ثبت شود. در بخش «بین»، عددهای میان دو عدد را روی محور رنگ کن.", "question": "روی محور از ۸ شروع کن و ۵ تا جلو برو. روی کدام عدد می‌ایستی؟", "answer": "۱۳؛ چون ۸ + ۵ = ۱۳.", "note": "خطای رایج، شمردن خانهٔ شروع به‌عنوان یک پرش است؛ پرش‌ها را با کمان شماره‌دار نشان بده تا این خطا دیده و اصلاح شود."}, {"id": 18, "theme": 18, "kind": "lesson", "style": 4, "skills": ["الگو", "شمارش و عدد"], "num": "۰ تا ۳۰", "title": "نردبانِ دوتا دوتا", "goal": "شمارش چندتایی (۲تایی و ۵تایی) به جلو و عقب و ادامه‌دادن الگوی عددی", "mechanic": "مهره‌ها را در دسته‌های مساوی ۲تایی یا ۵تایی بچین و بشمار؛ همان الگو روی نوار عدد رنگ شود. کودک عدد بعدی را پیش‌بینی کند و بعد با چیدن دستهٔ تازه بررسی کند.", "question": "الگوی ۲ ، ۴ ، ۶ ، ۸ ، ▢ ؛ عدد بعدی چیست؟", "answer": "۱۰؛ دوتا دوتا جلو می‌رویم.", "note": "شمارش چندتایی را با ضرب توضیح نده؛ فقط «دسته‌های مساوی» و الگوی عددی. شمارش رو به عقب را هم بگذار."}, {"id": 19, "theme": 19, "kind": "solve", "style": 2, "skills": ["حل مسئله", "ارزش مکانی", "شمارش و عدد"], "num": "۰ تا ۵۰", "title": "ایستگاه‌های ده‌تایی", "goal": "شناخت مضرب‌های ۱۰ و حل مسئلهٔ کوتاه با چینه و محور به‌جای محاسبهٔ ذهنی صرف", "mechanic": "سفینه در ایستگاه‌های ۱۰، ۲۰، ۳۰ و … توقف می‌کند. در هر ایستگاه یک مسئلهٔ کوتاه با تصویر داده می‌شود؛ کودک با دسته‌های ده‌تایی یا پرش روی محور آن را حل می‌کند و پاسخ را ثبت می‌کند.", "question": "در هر جعبه ۱۰ مداد است. ۴ جعبه داریم. چند مداد داریم؟", "answer": "۴۰ مداد؛ ده‌تا ده‌تا می‌شماریم: ۱۰، ۲۰، ۳۰، ۴۰.", "note": "نماد ضرب در پایهٔ اول استفاده نشود. راه‌حل باید روی محور یا با دسته‌ها دیده شود؛ پاسخ تنها کافی نیست."}, {"id": 20, "theme": 20, "kind": "lesson", "style": 1, "skills": ["شمارش و عدد", "ارزش مکانی", "الگو"], "num": "۱ تا ۵۰", "title": "رمزِ خانه‌های گمشده", "goal": "شمارش روان یکی‌یکی تا ۵۰ و یافتن عدد گمشده در جدول عددها، با توجه به گذر دهگان", "mechanic": "جدول عددها با چند خانهٔ خالی؛ کودک عدد گمشده را از روی همسایه‌ها پیدا می‌کند. هر سه عدد درست، رمز یک صندوق را می‌سازد. بازهٔ جدول در تنظیمات معلم قابل تغییر باشد (۱ تا ۳۰ یا ۱ تا ۵۰).", "question": "در شمارش یکی‌یکی، عدد بعد از ۳۹ چیست؟", "answer": "۴۰.", "note": "گذر از ۳۹ به ۴۰ نقطهٔ خطای رایج است؛ آن را با دسته‌های ده‌تایی نشان بده. اگر کلاس هنوز تا ۵۰ نرسیده، بازه را کوچک کن."}, {"id": 21, "theme": 21, "kind": "lesson", "style": 5, "skills": ["زمان", "جمع و تفریق"], "num": "۰ تا ۲۰", "title": "ساعتِ شهرِ ما", "goal": "خواندن و ساختن ساعت کامل، درک ترتیب رویدادهای روز و جمع سه عدد کوچک", "mechanic": "عقربهٔ ساعت‌شمار را بچرخان تا ساعت کامل خواسته‌شده ساخته شود؛ عقربهٔ دقیقه‌شمار روی ۱۲ قفل بماند. برنامهٔ روز (مدرسه، تفریح، ناهار، خانه) روی ساعت نشان داده شود. برای «چند ساعت بعد» از پرش روی نوار ساعت استفاده کن.", "question": "ساعت ۳ است؛ ۲ ساعت بعد ساعت چند می‌شود؟", "answer": "ساعت ۵.", "note": "در این تم فقط ساعت کامل؛ «نیم» و «ربع» و دقیقه مربوط به پایه‌های بالاتر است. جمع سه عدد کوچک را با چینه نشان بده تا حاصل‌جمع مرحله‌ای دیده شود."}, {"id": 22, "theme": 22, "kind": "lesson", "style": 7, "skills": ["الگو", "زمان", "شمارش و عدد"], "num": "۰ تا ۵۰", "title": "تقویمِ باغِ هفته", "goal": "ادامهٔ الگوهای ۲، ۵، ۶ و ۷تایی و خواندن ترتیب روزهای هفته روی تقویم ساده", "mechanic": "روی تقویم ماه، روزهای شمارش ۵تایی را رنگ کن و الگو را ببین. روی نوار عدد، الگوهای ۶ و ۷تایی را ادامه بده. روزهای هفته را به ترتیب در جای درست بگذار.", "question": "الگوی ۵ ، ۱۰ ، ۱۵ ، ۲۰ ، ▢ ؛ عدد بعدی چیست؟", "answer": "۲۵.", "note": "الگوی ۶ و ۷تایی سخت‌تر است؛ اول با دسته‌های عینی، بعد با عدد. تقویم را ساده و با نام روزهای هفته نشان بده، بدون تاریخ‌های پیچیده."}, {"id": 23, "theme": 23, "kind": "lesson", "style": 2, "skills": ["الگو", "شمارش و عدد"], "num": "۰ تا ۸۰", "title": "ماشین‌حسابِ کاوشگر", "goal": "کشف الگوی ۸تایی و شمارش ۵تایی رو به جلو و عقب، و استفاده از ماشین‌حساب برای بررسی حدس", "mechanic": "یک ماشین‌حساب آموزشی با دکمه‌های درشت بساز. کودک اول عدد بعدی را حدس می‌زند و ثبت می‌کند، بعد با دکمهٔ «+۸» یا «−۵» حدسش را بررسی می‌کند. حدس درست و حدس نیازمند اصلاح با دو رنگ متفاوت ثبت شوند.", "question": "در شمارش ۵تایی رو به عقب: ۴۰ ، ۳۵ ، ۳۰ ، ▢ ؛ عدد بعدی چیست؟", "answer": "۲۵.", "note": "ماشین‌حساب ابزار بررسی حدس است، نه جای محاسبه؛ ترتیب «پیش‌بینی ← بررسی» را اجباری کن. اعداد نمایشی بزرگ و خوانا باشند."}, {"id": 24, "theme": 24, "kind": "solve", "style": 1, "skills": ["حل مسئله", "زمان", "جمع و تفریق"], "num": "۰ تا ۲۰", "title": "مأموریتِ دو مرحله‌ای", "goal": "شکستن مسئله به دو پرسش ساده، نگه‌داشتن پاسخ میانی و استفاده از آن؛ خواندن ساعت تقریبی", "mechanic": "مسئلهٔ تصویری به دو گام تقسیم شود. پاسخ گام اول در «جعبهٔ یادداشت» روی صفحه می‌ماند تا در گام دوم استفاده شود. یک بخش کوتاه ساعت تقریبی («نزدیکِ ساعت ۴») با عقربه‌ها داشته باشد.", "question": "علی ۵ مداد داشت. ۳ مداد دیگر گرفت و بعد ۲ مداد به خواهرش داد. حالا چند مداد دارد؟", "answer": "۶ مداد؛ اول ۵ + ۳ = ۸ و بعد ۸ − ۲ = ۶.", "note": "پاسخ مرحلهٔ اول را روی صفحه نگه دار تا حافظهٔ کاری کودک تحت فشار نباشد. برای ساعت تقریبی واژهٔ «نزدیکِ» را بپذیر و دقیقه نخواه."}, {"id": 25, "theme": 25, "kind": "solve", "style": 4, "skills": ["حل مسئله", "ارزش مکانی", "شمارش و عدد"], "num": "۰ تا ۱۰۰", "title": "رازِ صد و مسئلهٔ ناقص", "goal": "ساختن عدد ۱۰۰ با ده دستهٔ ده‌تایی و تشخیص کافی یا ناکافی بودن اطلاعات مسئله", "mechanic": "بخش اول: دسته‌های ده‌تایی را کنار هم بگذار تا ۱۰۰ کامل شود و شمارش ده‌تا ده‌تا دیده شود. بخش دوم: مسئله‌های تصویری با اطلاعات کم یا زیاد؛ کودک تصمیم می‌گیرد «حل می‌شود» یا «اطلاعات کافی نیست» و اگر کم است، کارتِ دادهٔ گمشده را انتخاب می‌کند.", "question": "می‌خواهیم بدانیم چند دانش‌آموز در کلاس هستند؛ فقط می‌دانیم ۱۰ نفر دخترند. آیا اطلاعات کافی است؟", "answer": "نه؛ تعداد پسران را هم لازم داریم. بدون آن، تعداد کل کلاس معلوم نمی‌شود.", "note": "در مسئلهٔ ناقص، پاسخ درست «اطلاعات کافی نیست» است؛ کودک را مجبور به حدس عددی نکن. مسئلهٔ دارای دادهٔ اضافی هم بگذار تا انتخاب اطلاعات لازم تمرین شود."}, {"id": 26, "theme": 5, "span": [1, 5], "kind": "review", "style": 6, "skills": ["شمارش و عدد", "جمع و تفریق", "هندسه و تقارن"], "num": "۰ تا ۱۰", "title": "جشنوارهٔ شمارش و شکل", "goal": "مرور تم ۱ تا ۵: شمارش و چوب‌خط، جمع و تفریق عینی، لبه و گوشهٔ شکل‌ها", "mechanic": "پنج ایستگاه رالی؛ هر ایستگاه یک مهارت از تم‌های ۱ تا ۵. هر ایستگاه با یک نمونهٔ حل‌شدهٔ کوتاه شروع شود، بعد دو تمرین و یک چالش مستقل. خودرو در ایستگاه کاملاً بایستد.", "question": "۶ چوب‌خط داریم و ۲ چوب‌خط دیگر اضافه می‌کنیم. حالا چند چوب‌خط داریم؟", "answer": "۸ چوب‌خط؛ ۶ و ۲ روی هم ۸ می‌شود.", "note": "مرور را به آزمون تبدیل نکن. زمان‌سنج خاموش بماند و نتیجه فقط با تلاش قبلی خود کودک مقایسه شود."}, {"id": 27, "theme": 10, "span": [6, 10], "kind": "review", "style": 5, "skills": ["جمع و تفریق", "مقایسه", "شمارش و عدد"], "num": "۰ تا ۱۰", "title": "بازارچهٔ عددهای تا ۱۰", "goal": "مرور تم ۶ تا ۱۰: جمع و تفریق با چینه، ترکیب‌های ۱۰، مقایسه و مفهوم صفر", "mechanic": "غرفه‌های بازارچه با سفارش‌های تصویری: «۱۰ مهره در کیسه بگذار»، «دو سبد را برابر کن»، «سبد خالی چند است». پرداخت با ژتون شمارش انجام شود، نه پول واقعی.", "question": "۷ مهره در کیسه داریم؛ چند مهرهٔ دیگر لازم است تا ۱۰ مهره شود؟", "answer": "۳ مهره؛ چون ۷ + ۳ = ۱۰.", "note": "ترکیب‌های ۱۰ را با دو رنگ نشان بده تا مکمل عدد دیده شود. برای خطا، جریمه یا از دست دادن ژتون نساز."}, {"id": 28, "theme": 15, "span": [11, 15], "kind": "review", "style": 3, "skills": ["ارزش مکانی", "جمع و تفریق", "مقایسه"], "num": "۰ تا ۲۰", "title": "کارگاهِ ده‌تایی‌ها و تساوی", "goal": "مرور تم ۱۱ تا ۱۵: تساوی مجموعه‌ها، نماد جمع و تفریق و دسته‌بندی ده‌تایی", "mechanic": "میز کار با سه ابزار: مهرهٔ یکی، میلهٔ ده‌تایی و کارت عبارت. کودک عدد خواسته‌شده را می‌سازد، عبارت را کامل می‌کند و دو مجموعه را برابر می‌کند. همهٔ ساخت‌های معادل پذیرفته شوند.", "question": "۱۳ مهره را در دسته‌های ده‌تایی مرتب کن. چند ده‌تایی و چند یکی می‌شود؟", "answer": "۱ ده‌تایی و ۳ یکی.", "note": "اگر کودک ۱۳ را با ۱۳ مهرهٔ تنها ساخت، آن را هم درست بدان ولی تبدیل به دستهٔ ده‌تایی را یک بار نمایش بده."}, {"id": 29, "theme": 20, "span": [16, 20], "kind": "review", "style": 6, "skills": ["شمارش و عدد", "ارزش مکانی", "جمع و تفریق", "الگو"], "num": "۰ تا ۵۰", "title": "رالی عددهای دو رقمی", "goal": "مرور تم ۱۶ تا ۲۰: عددهای ۱۱ تا ۱۹، جمع و تفریق روی محور، شمارش چندتایی و مضرب‌های ۱۰", "mechanic": "مسیر رالی با ایستگاه‌های عددی؛ در هر ایستگاه یک عدد دو رقمی ساخته یا روی محور جابه‌جا می‌شود. رکورد فقط با تلاش قبلی خود کودک مقایسه شود.", "question": "روی محور از ۱۵ دو تا عقب برو. روی کدام عدد می‌ایستی؟", "answer": "۱۳؛ چون ۱۵ − ۲ = ۱۳.", "note": "در شمارش رو به عقب، خانهٔ شروع شمرده نمی‌شود؛ کمان‌های شماره‌دار این را روشن کنند."}, {"id": 30, "theme": 25, "span": [21, 25], "kind": "review", "style": 2, "skills": ["زمان", "الگو", "حل مسئله", "ارزش مکانی"], "num": "۰ تا ۱۰۰", "title": "ماجراجویی زمان و صد", "goal": "مرور تم ۲۱ تا ۲۵: ساعت کامل و تقریبی، الگوهای چندتایی، مسئلهٔ دو مرحله‌ای و عدد ۱۰۰", "mechanic": "چهار سیاره: سیارهٔ ساعت، سیارهٔ الگو، سیارهٔ مسئله و سیارهٔ صد. در هر سیاره یک چالش اصلی و یک تمرین کوتاه؛ در پایان نشان مرور با گزارش مهارت‌ها.", "question": "الگوی ۱۰ ، ۲۰ ، ۳۰ ، ▢ ، ۵۰ ؛ جای خالی چه عددی است؟", "answer": "۴۰؛ ده‌تا ده‌تا جلو می‌رویم.", "note": "در مرور، مسئلهٔ ناقص و مسئلهٔ دو مرحله‌ای را کنار هم بگذار تا کودک تفاوت «اطلاعات کم» و «چند گام» را حس کند."}]};
+
+
+const GAME_HTML = "<!DOCTYPE html>\n<html lang=\"fa\" dir=\"rtl\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>قطارِ واگن‌های دوست | ریاضی پایهٔ اول − تم ۳<\/title>\n<!--\n  راهنمای معلم (فارسی):\n  ۱) برای تغییر سؤال‌ها آرایهٔ CHALLENGES را ویرایش کنید: a = تعداد واگن اول، b = تعداد واگن دوم، thing = نام شیء.\n  ۲) رنگ‌ها در بخش :root با متغیرهای --c1 و --c2 قابل تغییرند.\n  ۳) این فایل کاملاً آفلاین است؛ هیچ فونت، تصویر یا کتابخانهٔ بیرونی ندارد.\n  ۴) دامنهٔ ریاضی: مفهوم اولیهٔ جمع (روی هم گذاشتن دو گروه)، بدون نماد + و = ؛ مناسب تم ۳ پایهٔ اول.\n-->\n<style>\n  :root{\n    --bg:#fdf6ec; --ink:#2f2a26; --card:#ffffff; --line:#e8dcc8;\n    --c1:#e0713f; --c2:#3f8f7a; --gold:#e0a53f; --ok:#2f7d5d; --soft:#f4ece0;\n    --shadow:0 6px 0 rgba(0,0,0,.06);\n  }\n  *{box-sizing:border-box}\n  html,body{margin:0;padding:0}\n  body{\n    background:var(--bg); color:var(--ink);\n    font-family:\"Vazirmatn\",\"IRANSans\",Tahoma,\"Segoe UI\",system-ui,sans-serif;\n    font-size:17px; line-height:1.9; -webkit-text-size-adjust:100%;\n  }\n  .wrap{max-width:760px;margin:0 auto;padding:12px 12px 28px}\n  header.top{background:var(--card);border:2px solid var(--line);border-radius:20px;padding:12px 14px;box-shadow:var(--shadow)}\n  h1{margin:0;font-size:1.25rem;line-height:1.6}\n  .meta{font-size:.82rem;color:#7a6a58;margin-top:2px}\n  .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}\n  button{font-family:inherit;font-size:1rem;cursor:pointer;border-radius:14px;border:2px solid var(--line);\n    background:var(--soft);color:var(--ink);min-height:52px;padding:8px 14px;transition:transform .12s,background .2s}\n  button:hover{background:#efe4d3}\n  button:active{transform:translateY(2px)}\n  button:focus-visible{outline:3px solid #2f6fb0;outline-offset:2px}\n  button[disabled]{opacity:.45;cursor:not-allowed}\n  .dots{display:flex;gap:6px;justify-content:center;margin:14px 0 6px}\n  .dot{width:16px;height:16px;border-radius:50%;background:#e3d7c4;border:2px solid #d3c4ac}\n  .dot.done{background:var(--ok);border-color:var(--ok)}\n  .dot.now{background:var(--gold);border-color:#c98f2c;transform:scale(1.25)}\n  .stage{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:14px;margin-top:10px;box-shadow:var(--shadow)}\n  .ask{display:flex;align-items:center;gap:10px;background:#fff8e8;border:2px dashed #e8cf9a;border-radius:16px;padding:10px 12px;font-weight:700}\n  .ask .ic{font-size:1.6rem;line-height:1}\n  .train{display:flex;gap:14px;justify-content:center;align-items:flex-end;flex-wrap:wrap;margin:18px 0 6px;min-height:130px}\n  .wagon{background:#fbf3e6;border:3px solid #d9c7ab;border-radius:16px;padding:10px 10px 4px;position:relative}\n  .wagon.joined{border-color:var(--gold);background:#fff6e2}\n  .cubes{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;min-height:62px;align-items:flex-end}\n  .cube{width:58px;height:58px;min-height:58px;padding:0;border-radius:12px;border:3px solid rgba(0,0,0,.14);\n    position:relative;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800;color:#fff}\n  .cube.a{background:linear-gradient(160deg,var(--c1),#c85c2e)}\n  .cube.b{background:linear-gradient(160deg,var(--c2),#2f7563)}\n  .cube .n{position:absolute;top:-14px;inset-inline-start:-6px;background:#2f6fb0;color:#fff;border-radius:50%;\n    width:26px;height:26px;display:none;align-items:center;justify-content:center;font-size:.85rem;border:2px solid #fff}\n  .cube.counted .n{display:flex}\n  .cube.counted{box-shadow:0 0 0 4px #ffe6a8}\n  .cube.counted-hint{box-shadow:0 0 0 4px #ffd0a0}\n  .wheels{display:flex;gap:18px;justify-content:center;margin-top:4px}\n  .wheel{width:16px;height:16px;border-radius:50%;background:#8b7a63;border:3px solid #6d5f4c}\n  .rail{height:8px;background:repeating-linear-gradient(90deg,#c9b799 0 14px,#e6d8c0 14px 24px);border-radius:6px;margin:6px 4px 0}\n  .tools{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}\n  .counter{text-align:center;font-weight:800;margin-top:10px;font-size:1.05rem}\n  .counter span{display:inline-block;min-width:34px;background:#2f6fb0;color:#fff;border-radius:10px;padding:0 8px}\n  .answers{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}\n  .ans{width:88px;height:88px;font-size:2rem;font-weight:800;background:#fff;border:3px solid #d9c7ab;border-radius:20px}\n  .ans.good{background:#dff3e6;border-color:var(--ok)}\n  .ans.bad{background:#fbe6e2;border-color:#c96a55}\n  .fb{margin-top:12px;border-radius:16px;padding:10px 12px;border:2px solid var(--line);background:var(--soft);min-height:56px}\n  .fb.ok{background:#e4f5ea;border-color:#a9d8bf}\n  .fb.tip{background:#fff4dd;border-color:#e8cf9a}\n  .fb b{color:var(--ok)}\n  .num{direction:ltr;unicode-bidi:isolate;display:inline-block}\n  .row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}\n  .primary{background:var(--ok);color:#fff;border-color:#256b4e;font-weight:800}\n  .primary:hover{background:#276a4f}\n  .gold{background:var(--gold);color:#3a2c10;border-color:#c98f2c;font-weight:800}\n  dialog{border:none;border-radius:22px;padding:0;max-width:min(560px,94vw);width:100%;box-shadow:0 18px 50px rgba(0,0,0,.25)}\n  dialog::backdrop{background:rgba(40,32,24,.55)}\n  .dlg{padding:16px;background:var(--card);border-radius:22px}\n  .dlg h2{margin:0 0 8px;font-size:1.1rem}\n  .dlg ul{margin:6px 0;padding-inline-start:20px}\n  .stars{font-size:2rem;text-align:center;letter-spacing:6px}\n  table.rep{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:8px}\n  table.rep th,table.rep td{border:1px solid var(--line);padding:6px;text-align:center}\n  .hide{display:none !important}\n  footer.note{text-align:center;color:#8a7a66;font-size:.78rem;margin-top:14px}\n  @media (max-width:380px){ .cube{width:50px;height:50px;min-height:50px} .ans{width:76px;height:76px;font-size:1.7rem} }\n  @media (prefers-reduced-motion:reduce){ *{transition:none !important;animation:none !important} }\n<\/style>\n<\/head>\n<body>\n<div class=\"wrap\">\n  <header class=\"top\">\n    <h1>🚂 قطارِ واگن‌های دوست<\/h1>\n    <div class=\"meta\">ریاضی پایهٔ اول • تم ۳: مفهوم اولیهٔ عمل جمع • صفحه‌های ۱۶ تا ۲۰ کتاب<\/div>\n    <div class=\"bar\">\n      <button id=\"btnHelp\" type=\"button\">❓ راهنما<\/button>\n      <button id=\"btnSound\" type=\"button\" aria-pressed=\"false\">🔇 صدا خاموش<\/button>\n      <button id=\"btnReset\" type=\"button\">↻ شروع دوباره<\/button>\n      <button id=\"btnReport\" type=\"button\">📄 گزارش معلم<\/button>\n    <\/div>\n  <\/header>\n\n  <div class=\"dots\" id=\"dots\" aria-hidden=\"true\"><\/div>\n\n  <main class=\"stage\">\n    <div class=\"ask\"><span class=\"ic\" id=\"askIc\">🧩<\/span><span id=\"askTxt\">واگن‌ها را به هم بچسبان، بعد همه را بشمار.<\/span><\/div>\n\n    <div class=\"train\" id=\"train\"><\/div>\n    <div class=\"rail\"><\/div>\n\n    <div class=\"tools\">\n      <button id=\"btnJoin\" type=\"button\" class=\"gold\">🔗 واگن‌ها را به هم بچسبان<\/button>\n      <button id=\"btnClear\" type=\"button\">🧽 پاک‌کردن شمارش<\/button>\n    <\/div>\n\n    <div class=\"counter\">شمرده‌ای: <span id=\"count\" class=\"num\">۰<\/span><\/div>\n\n    <div class=\"answers\" id=\"answers\" role=\"group\" aria-label=\"پاسخ‌ها\"><\/div>\n\n    <div class=\"fb\" id=\"fb\" role=\"status\" aria-live=\"polite\">روی هر چینه یک بار بزن تا شمرده شود.<\/div>\n\n    <div class=\"row\">\n      <button id=\"btnHint\" type=\"button\">💡 کمکم کن<\/button>\n      <button id=\"btnNext\" type=\"button\" class=\"primary hide\">➜ سؤال بعدی<\/button>\n      <button id=\"btnFinish\" type=\"button\" class=\"primary hide\">🏁 پایان و نشان‌ها<\/button>\n    <\/div>\n  <\/main>\n\n  <footer class=\"note\">نمونهٔ ساخته‌شده با پرامپت «تم ۳» • بدون اینترنت، بدون تبلیغ، بدون ثبت نام دانش‌آموز<br>سازنده: ستایش جعفری<\/footer>\n<\/div>\n\n<dialog id=\"dlgHelp\"><div class=\"dlg\">\n  <h2>چطور بازی کنیم؟<\/h2>\n  <ul>\n    <li>۱. دکمهٔ 🔗 را بزن تا دو واگن به هم بچسبند.<\/li>\n    <li>۲. روی هر چینه یک بار بزن؛ بالای آن شماره می‌آید.<\/li>\n    <li>۳. عددِ درست را از سه دکمهٔ بزرگ انتخاب کن.<\/li>\n  <\/ul>\n  <p>اگر اشتباه شد، هیچ امتیازی کم نمی‌شود؛ بازی با شکل کمک می‌کند.<\/p>\n  <div class=\"row\"><button class=\"primary\" data-close type=\"button\">فهمیدم<\/button><\/div>\n<\/div><\/dialog>\n\n<dialog id=\"dlgEnd\"><div class=\"dlg\">\n  <h2>🏅 کارنامهٔ این بازی<\/h2>\n  <div class=\"stars\" id=\"stars\"><\/div>\n  <div id=\"endTxt\"><\/div>\n  <table class=\"rep\" id=\"repTable\"><\/table>\n  <div class=\"row\">\n    <button id=\"btnAgain\" type=\"button\" class=\"primary\">↻ تمرین دوباره<\/button>\n    <button id=\"btnJson\" type=\"button\">⬇ دانلود گزارش (JSON)<\/button>\n    <button data-close type=\"button\">بستن<\/button>\n  <\/div>\n<\/div><\/dialog>\n\n<script>\n\"use strict\";\n/* ---------- دادهٔ سؤال‌ها (قابل ویرایش توسط معلم) ---------- */\nconst CHALLENGES = [\n  {a:1,b:2,thing:\"مسافر\"},\n  {a:2,b:2,thing:\"مسافر\"},\n  {a:3,b:1,thing:\"جعبه\"},\n  {a:2,b:3,thing:\"مسافر\"},\n  {a:4,b:2,thing:\"جعبه\"},\n  {a:3,b:3,thing:\"مسافر\"}\n];\nconst KEY = \"g1-tam3-progress-v1\";\n\n/* ---------- ابزارها ---------- */\nconst $ = (id)=>document.getElementById(id);\nconst FA = \"۰۱۲۳۴۵۶۷۸۹\";\nconst fa = (n)=>String(n).replace(/\\d/g,(d)=>FA[+d]);\nconst sum = (c)=>c.a+c.b;\n\n/* ---------- وضعیت ---------- */\nlet state = {i:0, joined:false, counted:[], attempts:0, hints:0, solved:false, afterExample:false, results:[], sound:false};\n\nfunction save(){\n  try{ localStorage.setItem(KEY, JSON.stringify({i:state.i, results:state.results})); }catch(e){/* بی‌صدا */}\n}\nfunction load(){\n  try{\n    const raw = localStorage.getItem(KEY); if(!raw) return;\n    const d = JSON.parse(raw);\n    if(d && Array.isArray(d.results) && Number.isInteger(d.i) && d.i>=0 && d.i<=CHALLENGES.length){\n      state.results = d.results; state.i = d.i;\n    }\n  }catch(e){/* اگر LocalStorage نبود، بازی در حافظه ادامه می‌یابد */}\n}\n\n/* ---------- صدای اختیاری ---------- */\nlet ac=null;\nfunction beep(freq,dur){\n  if(!state.sound) return;\n  try{\n    ac = ac || new (window.AudioContext||window.webkitAudioContext)();\n    const o=ac.createOscillator(), g=ac.createGain();\n    o.type=\"sine\"; o.frequency.value=freq; g.gain.value=.06;\n    o.connect(g); g.connect(ac.destination); o.start();\n    g.gain.exponentialRampToValueAtTime(.0001, ac.currentTime+dur);\n    o.stop(ac.currentTime+dur);\n  }catch(e){}\n}\n\n/* ---------- رندر ---------- */\nfunction cubeEl(kind,idx){\n  const b=document.createElement(\"button\");\n  b.type=\"button\"; b.className=\"cube \"+kind; b.dataset.id=kind+idx;\n  b.setAttribute(\"aria-label\",\"چینهٔ \"+fa(idx+1));\n  const n=document.createElement(\"span\"); n.className=\"n\"; b.appendChild(n);\n  b.addEventListener(\"click\",()=>tapCube(b));\n  return b;\n}\nfunction wagonEl(kind,count,label){\n  const w=document.createElement(\"div\"); w.className=\"wagon\"+(state.joined?\" joined\":\"\");\n  const c=document.createElement(\"div\"); c.className=\"cubes\";\n  for(let k=0;k<count;k++) c.appendChild(cubeEl(kind,k));\n  w.appendChild(c);\n  const wh=document.createElement(\"div\"); wh.className=\"wheels\";\n  wh.innerHTML='<span class=\"wheel\"><\/span><span class=\"wheel\"><\/span>';\n  w.appendChild(wh);\n  const cap=document.createElement(\"div\"); cap.style.textAlign=\"center\"; cap.style.fontSize=\".8rem\"; cap.style.color=\"#7a6a58\";\n  cap.textContent=label; w.appendChild(cap);\n  return w;\n}\nfunction renderTrain(){\n  const c=CHALLENGES[state.i], t=$(\"train\"); t.innerHTML=\"\";\n  if(state.joined){\n    const w=document.createElement(\"div\"); w.className=\"wagon joined\";\n    const box=document.createElement(\"div\"); box.className=\"cubes\";\n    for(let k=0;k<c.a;k++) box.appendChild(cubeEl(\"a\",k));\n    for(let k=0;k<c.b;k++) box.appendChild(cubeEl(\"b\",k));\n    w.appendChild(box);\n    const wh=document.createElement(\"div\"); wh.className=\"wheels\";\n    wh.innerHTML='<span class=\"wheel\"><\/span><span class=\"wheel\"><\/span>'; w.appendChild(wh);\n    const cap=document.createElement(\"div\");\n    cap.style.textAlign=\"center\"; cap.style.fontSize=\".8rem\"; cap.style.color=\"#7a6a58\";\n    cap.textContent=\"همهٔ \"+c.thing+\"ها با هم\"; w.appendChild(cap);\n    t.appendChild(w);\n  }else{\n    t.appendChild(wagonEl(\"a\",c.a,\"واگن اول: \"+fa(c.a)));\n    t.appendChild(wagonEl(\"b\",c.b,\"واگن دوم: \"+fa(c.b)));\n  }\n  paintCounted();\n}\nfunction paintCounted(){\n  document.querySelectorAll(\".cube\").forEach((el)=>{\n    const p=state.counted.indexOf(el.dataset.id);\n    el.classList.toggle(\"counted\",p>=0);\n    el.querySelector(\".n\").textContent = p>=0 ? fa(p+1) : \"\";\n  });\n  $(\"count\").textContent=fa(state.counted.length);\n}\nfunction tapCube(el){\n  if(state.solved) return;\n  const id=el.dataset.id, p=state.counted.indexOf(id);\n  if(p>=0) state.counted.splice(p,1); else { state.counted.push(id); beep(520+state.counted.length*40,.09); }\n  paintCounted();\n}\nfunction options(c){\n  const right=sum(c), set=new Set([right]);\n  const near=[right+1,right-1,right+2].filter((v)=>v>=0 && v<=12);\n  while(set.size<3 && near.length){ set.add(near.splice(Math.floor(Math.random()*near.length),1)[0]); }\n  let g=0; while(set.size<3 && g<20){ set.add(Math.max(0,right+ (g%5) -2)); g++; }\n  return [...set].sort(()=>Math.random()-.5);\n}\nfunction renderAnswers(){\n  const c=CHALLENGES[state.i], box=$(\"answers\"); box.innerHTML=\"\";\n  options(c).forEach((v)=>{\n    const b=document.createElement(\"button\");\n    b.type=\"button\"; b.className=\"ans num\"; b.textContent=fa(v); b.dataset.v=v;\n    b.setAttribute(\"aria-label\",\"پاسخ \"+fa(v));\n    b.addEventListener(\"click\",()=>answer(b,v));\n    box.appendChild(b);\n  });\n}\nfunction renderDots(){\n  const d=$(\"dots\"); d.innerHTML=\"\";\n  CHALLENGES.forEach((_,k)=>{\n    const s=document.createElement(\"span\");\n    s.className=\"dot\"+(k<state.results.length?\" done\":\"\")+(k===state.i?\" now\":\"\");\n    d.appendChild(s);\n  });\n}\nfunction setup(){\n  state.joined=false; state.counted=[]; state.attempts=0; state.hints=0; state.solved=false;\n  const c=CHALLENGES[state.i];\n  $(\"askIc\").textContent=\"🧩\";\n  $(\"askTxt\").textContent=\"واگن اول \"+fa(c.a)+\" \"+c.thing+\" دارد و واگن دوم \"+fa(c.b)+\" تا. روی هم چند تا می‌شود؟\";\n  $(\"btnJoin\").disabled=false; $(\"btnNext\").classList.add(\"hide\"); $(\"btnFinish\").classList.add(\"hide\");\n  $(\"btnHint\").disabled=false;\n  $(\"fb\").className=\"fb\"; $(\"fb\").textContent=\"اول واگن‌ها را به هم بچسبان، بعد روی هر چینه یک بار بزن.\";\n  renderDots(); renderTrain(); renderAnswers();\n}\n\n/* ---------- بازخورد و اعتبارسنجی ---------- */\nfunction answer(btn,v){\n  if(state.solved) return;\n  const c=CHALLENGES[state.i], right=sum(c);\n  if(v===right){\n    state.solved=true; btn.classList.add(\"good\"); beep(880,.18);\n    $(\"fb\").className=\"fb ok\";\n    $(\"fb\").innerHTML=\"آفرین! <b>\"+fa(c.a)+\" و \"+fa(c.b)+\" روی هم \"+fa(right)+\" می‌شود.<\/b> 🎉\";\n    $(\"askIc\").textContent=\"✅\"; $(\"askTxt\").textContent=\"درست بود! قطار حرکت می‌کند.\";\n    state.results.push({q:state.i+1,a:c.a,b:c.b,answer:right,attempts:state.attempts+1,hints:state.hints,\n      independent:state.attempts===0&&state.hints===0&&!state.afterExample, withExample:!!state.afterExample});\n    save(); renderDots();\n    $(\"btnHint\").disabled=true;\n    document.querySelectorAll(\".ans\").forEach((b)=>b.disabled=true);\n    if(state.i<CHALLENGES.length-1) $(\"btnNext\").classList.remove(\"hide\");\n    else $(\"btnFinish\").classList.remove(\"hide\");\n  }else{\n    state.attempts++; btn.classList.add(\"bad\"); btn.disabled=true; beep(220,.16);\n    if(state.attempts===1){\n      $(\"fb\").className=\"fb tip\";\n      $(\"fb\").textContent=\"بیا یک بار با شکل بررسی کنیم: واگن‌ها را بچسبان و روی هر چینه فقط یک بار بزن.\";\n      if(!state.joined) join(true);\n      document.querySelectorAll(\".cube:not(.counted)\").forEach((el)=>el.classList.add(\"counted-hint\"));\n    }else{\n      showWorked();\n    }\n  }\n}\nfunction join(silent){\n  state.joined=true; renderTrain(); $(\"btnJoin\").disabled=true;\n  if(!silent){ $(\"fb\").className=\"fb\"; $(\"fb\").textContent=\"حالا همهٔ چینه‌ها در یک واگن‌اند؛ از سمت راست بشمار.\"; beep(660,.12); }\n}\nfunction showWorked(){\n  const c=CHALLENGES[state.i], right=sum(c);\n  if(!state.joined) join(true);\n  const ids=[...document.querySelectorAll(\".cube\")].map((el)=>el.dataset.id);\n  state.counted=[]; paintCounted();\n  let k=0;\n  const step=()=>{\n    if(k<ids.length){ state.counted.push(ids[k]); paintCounted(); beep(500+k*35,.07); k++; setTimeout(step,260); }\n    else{\n      $(\"fb\").className=\"fb tip\";\n      $(\"fb\").innerHTML=\"نمونهٔ حل‌شده: \"+fa(c.a)+\" و \"+fa(c.b)+\" روی هم <b>\"+fa(right)+\"<\/b> می‌شود. حالا یک سؤال تازهٔ شبیه همین حل کن.\";\n      const fresh={a:c.b,b:c.a,thing:c.thing};\n      CHALLENGES[state.i]=fresh;\n      setTimeout(()=>{ setup(); state.afterExample=true; },1400);\n    }\n  };\n  step();\n}\nfunction hint(){\n  const c=CHALLENGES[state.i]; state.hints++;\n  $(\"fb\").className=\"fb tip\";\n  if(!state.joined){ $(\"fb\").textContent=\"راهنمای ۱: اول دو واگن را به هم بچسبان تا همه یکی شوند.\"; join(true); return; }\n  const total=state.counted.length, right=sum(c);\n  if(total<right) $(\"fb\").textContent=\"راهنمای ۲: هنوز \"+fa(right-total)+\" چینه شمرده نشده؛ روی چینه‌های بدون شماره بزن.\";\n  else $(\"fb\").textContent=\"راهنمای ۲: آخرین شماره‌ای که روی چینه‌ها دیدی، همان پاسخ است: \"+fa(total)+\".\";\n}\n\n/* ---------- پایان و گزارش ---------- */\nfunction report(){\n  const done=state.results.length;\n  const first=state.results.filter((r)=>r.independent).length;\n  const helped=state.results.filter((r)=>!r.independent).length;\n  return {book:\"ریاضی پایهٔ اول\",theme:3,pages:\"۱۶ تا ۲۰\",game:\"قطارِ واگن‌های دوست\",\n    total:CHALLENGES.length,done,firstTryIndependent:first,solvedWithHelp:helped,\n    mastery: done>0 && first/Math.max(1,done)>=0.8, details:state.results, at:new Date().toISOString()};\n}\nfunction openEnd(){\n  const r=report();\n  $(\"stars\").textContent = \"⭐\".repeat(Math.max(1,Math.min(3,Math.round(r.firstTryIndependent/2)))) + (r.mastery?\"🏅\":\"\");\n  $(\"endTxt\").innerHTML = \"پاسخ درست در تلاش اول و بدون راهنما: <b class='num'>\"+fa(r.firstTryIndependent)+\"<\/b> از <span class='num'>\"+fa(r.done)+\"<\/span><br>\"+\n    \"حل‌شده با راهنما یا نمونه: <b class='num'>\"+fa(r.solvedWithHelp)+\"<\/b><br>\"+\n    (r.mastery?\"نشان تسلط گرفتی! 🏅\":\"برای نشان تسلط، ۸ سؤال از هر ۱۰ سؤال را در تلاش اول و بدون راهنما درست حل کن.\");\n  let html=\"<tr><th>سؤال<\/th><th>عبارت<\/th><th>تلاش<\/th><th>راهنما<\/th><th>مستقل<\/th><\/tr>\";\n  r.details.forEach((d)=>{ html+=\"<tr><td class='num'>\"+fa(d.q)+\"<\/td><td class='num'>\"+fa(d.a)+\" و \"+fa(d.b)+\"<\/td><td class='num'>\"+fa(d.attempts)+\"<\/td><td class='num'>\"+fa(d.hints)+\"<\/td><td>\"+(d.independent?\"✔\":\"—\")+\"<\/td><\/tr>\"; });\n  $(\"repTable\").innerHTML=html;\n  $(\"dlgEnd\").showModal();\n}\n\n/* ---------- رویدادها ---------- */\n$(\"btnJoin\").addEventListener(\"click\",()=>join(false));\n$(\"btnClear\").addEventListener(\"click\",()=>{ state.counted=[]; paintCounted(); });\n$(\"btnHint\").addEventListener(\"click\",hint);\n$(\"btnNext\").addEventListener(\"click\",()=>{ state.i++; state.afterExample=false; save(); setup(); });\n$(\"btnFinish\").addEventListener(\"click\",openEnd);\n$(\"btnHelp\").addEventListener(\"click\",()=>$(\"dlgHelp\").showModal());\n$(\"btnReport\").addEventListener(\"click\",openEnd);\n$(\"btnAgain\").addEventListener(\"click\",()=>{ $(\"dlgEnd\").close(); hardReset(); });\n$(\"btnReset\").addEventListener(\"click\",()=>{ if(confirm(\"همهٔ پیشرفت این بازی پاک شود؟\")) hardReset(); });\n$(\"btnSound\").addEventListener(\"click\",()=>{\n  state.sound=!state.sound;\n  $(\"btnSound\").textContent = state.sound?\"🔊 صدا روشن\":\"🔇 صدا خاموش\";\n  $(\"btnSound\").setAttribute(\"aria-pressed\",String(state.sound));\n  if(state.sound) beep(700,.12);\n});\n$(\"btnJson\").addEventListener(\"click\",()=>{\n  const blob=new Blob([JSON.stringify(report(),null,2)],{type:\"application/json\"});\n  const a=document.createElement(\"a\"); a.href=URL.createObjectURL(blob);\n  a.download=\"gozaresh-tam3.json\"; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),2000);\n});\ndocument.querySelectorAll(\"[data-close]\").forEach((b)=>b.addEventListener(\"click\",(e)=>e.target.closest(\"dialog\").close()));\nfunction hardReset(){\n  state.i=0; state.results=[]; state.afterExample=false;\n  CHALLENGES[0]={a:1,b:2,thing:\"مسافر\"}; CHALLENGES[1]={a:2,b:2,thing:\"مسافر\"}; CHALLENGES[2]={a:3,b:1,thing:\"جعبه\"};\n  CHALLENGES[3]={a:2,b:3,thing:\"مسافر\"}; CHALLENGES[4]={a:4,b:2,thing:\"جعبه\"}; CHALLENGES[5]={a:3,b:3,thing:\"مسافر\"};\n  try{ localStorage.removeItem(KEY); }catch(e){}\n  setup();\n}\ndocument.addEventListener(\"visibilitychange\",()=>{ if(document.hidden && ac){ try{ac.suspend();}catch(e){} } });\n\nload();\nif(state.i>=CHALLENGES.length) state.i=0;\nsetup();\n<\/script>\n<\/body>\n<\/html>\n";
+
+
+/* ---------- Web Audio Synthesizer (Pure Offline Delight) ---------- */
+let audioCtx = null;
+let soundEnabled = false;
+
+function initAudio() {
+  if (!audioCtx) {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (AudioContext) audioCtx = new AudioContext();
+  }
+  if (audioCtx && audioCtx.state === "suspended") {
+    audioCtx.resume();
+  }
+}
+
+function playChime(freq = 520, type = "sine", duration = 0.14) {
+  if (!soundEnabled) return;
+  try {
+    initAudio();
+    if (!audioCtx) return;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  } catch(e) {}
+}
+
+function playPop() { playChime(420, "triangle", 0.08); }
+function playSuccess() {
+  playChime(440, "sine", 0.1);
+  setTimeout(() => playChime(660, "sine", 0.16), 80);
+}
+function playTrainWhistle() {
+  playChime(320, "sawtooth", 0.25);
+  setTimeout(() => playChime(380, "sawtooth", 0.35), 120);
+}
+
+/* ---------- Helpers & State ---------- */
+const $ = (id) => document.getElementById(id);
+const FA = "۰۱۲۳۴۵۶۷۸۹";
+const fa = (n) => String(n).replace(/\d/g, (d) => FA[+d]);
+const esc = (s) => String(s).replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
+
+const KIND = { lesson: "درس", solve: "حل مسئله", review: "مرور تم‌ها" };
+
+const SKILL_ICONS = {
+  "شمارش و عدد": "🔢",
+  "جمع و تفریق": "➕",
+  "مقایسه": "⚖️",
+  "ارزش مکانی": "🏛️",
+  "الگو": "🔁",
+  "هندسه و تقارن": "📐",
+  "اندازه‌گیری": "📏",
+  "زمان": "⏰",
+  "آمار و نمودار": "📊",
+  "حل مسئله": "🧩"
+};
+
+const state = {
+  q: "",
+  searchScope: "all",
+  semester: "all", // all | s1 | s2
+  theme: "all",    // all | 1..25
+  skill: "all",
+  kind: "all",
+  style: null,
+  sort: "theme",
+  favOnly: false,
+  viewMode: "grid", // grid | list
+  shown: 12
+};
+
+let favs = new Set();
+try {
+  const raw = localStorage.getItem("fav_math_grade1");
+  if (raw) JSON.parse(raw).forEach((id) => favs.add(id));
+} catch(e) {}
+
+function saveFavs() {
+  try { localStorage.setItem("fav_math_grade1", JSON.stringify([...favs])); } catch(e) {}
+}
+
+let brand = { name: "", contact: "" };
+try {
+  const raw = localStorage.getItem("brand_math_grade1");
+  if (raw) brand = JSON.parse(raw) || brand;
+} catch(e) {}
+
+function saveBrand() {
+  try { localStorage.setItem("brand_math_grade1", JSON.stringify(brand)); } catch(e) {}
+}
+
+let toastTimer = null;
+function toast(msg) {
+  const el = $("toast");
+  el.innerHTML = msg;
+  el.classList.add("on");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove("on"), 2600);
+}
+
+function norm(s) {
+  return (s || "")
+    .toLowerCase()
+    .replace(/[ك]/g, "ک")
+    .replace(/[ي]/g, "ی")
+    .replace(/[آأإ]/g, "ا")
+    .replace(/[\u200c\s]+/g, " ")
+    .replace(/[۰-۹]/g, (d) => "0123456789"["۰۱۲۳۴۵۶۷۸۹".indexOf(d)])
+    .trim();
+}
+
+function pagesOf(a) {
+  if (a.kind === "review") {
+    const t1 = DATA.themes[a.span[0] - 1], t2 = DATA.themes[a.span[1] - 1];
+    return [t1.start, t2.end];
+  }
+  const t = DATA.themes[a.theme - 1];
+  return [t.start, t.end];
+}
+
+function whereOf(a) {
+  const [s, e] = pagesOf(a);
+  return a.kind === "review"
+    ? ("مرور تم‌های " + fa(a.span[0]) + " تا " + fa(a.span[1]) + " (ص " + fa(s) + " تا " + fa(e) + ")")
+    : ("تم " + fa(a.theme) + " (ص " + fa(s) + " تا " + fa(e) + ")");
+}
+
+function topicOf(a) {
+  if (a.kind === "review") return "مرور دوره‌ای مباحث کتاب";
+  return DATA.themes[a.theme - 1].topic;
+}
+
+/* ---------- Prompt Creator (Preserving Full Pedagogical Spec) ---------- */
+function createPrompt(a, sid, o) {
+  const s = DATA.styles[sid];
+  const [ps, pe] = pagesOf(a);
+  const start = o.start || ps, end = o.end || pe;
+  const owner = (brand.name || "").trim();
+  const contact = (brand.contact || "").trim();
+  const head = [
+    "پرامپت ساخت بازی آموزشی ریاضی | " + o.name,
+    owner ? ("صاحب اثر: " + owner + (contact ? (" | " + contact) : "")) : "صاحب اثر: آموزگار پایهٔ اول",
+    "پایه: اول دبستان (۶ تا ۷ سال) • " + (a.kind === "review" ? ("مرور تم‌های " + fa(a.span[0]) + " تا " + fa(a.span[1])) : ("تم " + fa(a.theme))),
+    "مبحث کتاب: " + topicOf(a),
+    "صفحه‌های کتاب: " + fa(start) + " تا " + fa(end),
+    "دامنهٔ مجاز اعداد: " + a.num,
+    "منبع: کتاب ریاضی (اول)، کد ۱۰۵، سازمان پژوهش و برنامه‌ریزی آموزشی.",
+    "توجه: بازهٔ صفحه، محل مبحث است؛ نمونهٔ زیر تألیفی و هم‌راستا با آن است، نه نقل مستقیم از کتاب. متن همین پرامپت مبنای محتواست؛ دسترسی به PDF کتاب را فرض نکن."
+  ].join("\n");
+
+  const guard = a.theme < 13 && a.kind !== "review"
+    ? "در این تم هنوز نمادهای + و − و = آموزش داده نشده است؛ جمع و تفریق را فقط با «روی هم گذاشتن» و «برداشتن» و شمردن کل نشان بده.\n"
+    : "";
+
+  return head + "\n\n" +
+`۱) نقش و خروجی نهایی
+تو طراح یادگیری ریاضی دورهٔ ابتدایی، طراح رابط کودک و برنامه‌نویس وب هستی. یک بازی واقعاً قابل اجرا بساز، نه توضیح و نه ماکت.
+خروجی فقط کد کامل یک فایل HTML با CSS و JavaScript داخلی باشد؛ در یک بلوک کد، از <!DOCTYPE html> تا </html>، بدون TODO و بدون بخش ناقص. بازی با دوبار کلیک روی فایل و بدون اینترنت اجرا شود.
+
+۲) مخاطب و هدف آموزشی
+مخاطب: دانش‌آموز پایهٔ اول، ۶ تا ۷ سال، که هنوز روان نمی‌خواند. رابط کاملاً فارسی و راست‌به‌چپ.
+هدف قابل سنجش: ${a.goal}
+سطح: ${o.level} • تعداد چالش: ${fa(o.count)} • زمان پیشنهادی جلسه: حدود ${fa(o.duration)} دقیقه (توصیهٔ معلم، نه مهلت پاسخ).
+${guard}قاعدهٔ طلایی «بی‌نیازی از خواندن»: هر دستور حداکثر ۸ کلمه، همراه آیکون یا تصویر؛ آموزش با نمایش انجام شود نه با پاراگراف. هیچ ورودی متنی از کودک خواسته نشود؛ پاسخ با لمس، کلیک یا انتخاب عدد باشد.
+محدودهٔ اعداد را از ${a.num} بیرون نبر. کسر، ضرب، تقسیم، پول واقعی، دقیقهٔ ساعت و عددهای بزرگ‌تر از دامنهٔ این تم ممنوع است.
+در سربرگ بازی، عنوان تم و شمارهٔ صفحه‌ها را دقیق بنویس؛ عنوان خلاقانهٔ بازی جای نام رسمی مبحث ننشیند.
+${o.goal ? ("درخواست تکمیلی معلم: " + o.goal + "\n") : ""}
+۳) سبک و طراحی هنری
+سبک: ${s.name} (${s.tag}) — ${s.desc}
+رنگ راهنما: ${s.color} با مکمل‌های ملایم و کنتراست خوانا. صحنهٔ لایه‌دار، شخصیت مستقل، آیکون‌های بزرگ و مسیر پیشرفت روشن. تزئینات نباید ابزار ریاضی را بپوشانند.
+قواعد سبک: ${s.rules}
+
+۴) تعامل اصلی؛ با یک آزمون چهارگزینه‌ای جایگزین نشود
+${a.mechanic}
+چرخهٔ هر چالش: نمونهٔ حل‌شدهٔ کوتاه ← دست‌کاری ابزار توسط کودک ← ثبت پاسخ ← بازخورد تصویری همراه مدل ← تمرین مستقل.
+ابتدا یک آموزش تصویری کمتر از یک دقیقه بده، بعد یک چالش هدایت‌شده، سپس تمرین‌های متنوع و یک چالش جمع‌بندی. با تغییر سبک، هدف ریاضی و این تعامل اصلی حذف نشوند.
+
+۵) نمونهٔ تألیفی با پاسخ کنترل‌شده
+صورت نمونه: ${a.question}
+پاسخ درست و توضیح: ${a.answer}
+این نمونه در بانک سؤال باشد؛ ${fa(Math.max(0, o.count - 1))} چالش دیگر را با همان هدف و در همان دامنهٔ اعداد، متنوع و بدون تکرار عین سؤال بساز.
+برای هر چالش این فیلدها را در دادهٔ داخلی نگه دار: شناسه، صورت کوتاه، دادهٔ مدل، پاسخ یا قاعدهٔ پذیرش، توضیح، راهنمای اول، راهنمای دوم، برچسب مهارت.
+کلیدها را با منطق ریاضی مستقل بررسی کن. در فعالیت ساختنی همهٔ پاسخ‌های معادل درست پذیرفته شوند. اگر انتخابی است، گزینه‌ها یکتا و جای پاسخ درست متغیر باشد و گزینه‌ها حداکثر سه تا باشند.
+
+۶) نکتهٔ حساس همین مبحث
+${a.note}
+در خطا ابتدا «بیا یک بار با شکل بررسی کنیم» و راهنمای تصویری بده، نه فقط علامت قرمز. پس از دو تلاش ناموفق، نمونهٔ حل‌شده را نشان بده و یک سؤال تازهٔ شبیه آن بده. پاسخ کامل در تلاش اول لو نرود.
+
+۷) انگیزه، سنجش و گزارش معلم
+امتیاز یادگیری از جمع‌آوری تزئینات و مهارت حرکتی جدا باشد. برای هر چالش تعداد تلاش، استفاده از راهنما و حل مستقل ثبت شود.
+نشان تلاش و نشان یادگیری بده؛ بدون تحقیر، بدون حذف جان و بدون رتبه‌بندی عمومی کودکان.
+در پایان: تعداد درست در تلاش اول، تعداد حل‌شده با راهنما، مهارت‌های نیازمند تمرین و دکمهٔ «تمرین دوبارهٔ همین مهارت».
+${o.report ? "گزارش بی‌نام قابل دانلود به JSON باشد. هیچ نام، عکس، حساب کاربری یا دادهٔ شخصی گرفته نشود.\n" : "گزارش پایانی فقط روی صفحه نمایش داده شود و هیچ داده‌ای ذخیره یا ارسال نشود.\n"}پیشرفت با کلید نسخه‌دار در LocalStorage و داخل try/catch نگه داشته شود؛ اگر در دسترس نبود، بازی در حافظهٔ نشست ادامه یابد. پاک‌کردن پیشرفت نیازمند تأیید باشد.
+
+۸) دسترس‌پذیری و تجربهٔ کاربری
+طراحی mobile-first از عرض ۳۶۰ پیکسل تا دسکتاپ، بدون اسکرول افقی. هدف‌های لمسی حداقل ۵۶×۵۶ پیکسل و فاصلهٔ کافی؛ متن اصلی درشت.
+${o.noDrag ? "برای هر کشیدن‌ورهاکردن، جایگزین «انتخاب قطعه، سپس انتخاب خانه» با دو کلیک وجود داشته باشد.\n" : ""}}تاچ، ماوس و صفحه‌کلید پشتیبانی شوند؛ فوکوس واضح، برچسب فهمیدنی و aria-live برای بازخورد. تنها به رنگ برای درست/غلط تکیه نکن.
+عبارت ریاضی، محور و ساعت دیجیتال در ناحیه‌ای با dir="ltr" رندر شوند و متن توضیح rtl بماند. نمایش اعداد فارسی، محاسبه با Number؛ ورودی فارسی و عربی پیش از محاسبه نرمال شود.
+زمان‌سنج ${o.timer ? "روشن باشد ولی هرگز پاسخ را قفل نکند و امکان خاموش‌کردن داشته باشد" : "پیش‌فرض خاموش باشد"}. دکمه‌های توقف، راهنما و شروع مجدد وجود داشته باشد.
+صدا ${o.sound ? "پس از اولین تعامل کاربر روشن شود و دکمهٔ خاموش‌کردن داشته باشد" : "پیش‌فرض خاموش باشد و فقط با دکمهٔ کاربر و پس از تعامل او روشن شود"}؛ فقط Web Audio API، بدون فایل صوتی بیرونی، بدون فلاش سریع و بدون پخش خودکار. حرکت تزئینی با prefers-reduced-motion کاهش یابد.
+
+۹) معماری و گرافیک
+همهٔ تصاویر با SVG داخلی، CSS یا Canvas ساخته شوند؛ هیچ CDN، کتابخانهٔ بیرونی، fetch شبکه، ردیاب و تبلیغ نباشد. از برند، لوگو، موسیقی یا شخصیت بازی‌های دیگر کپی نکن.
+از فونت سیستمی فارسی استفاده کن؛ هیچ فونتی از شبکه بارگیری نشود.
+دادهٔ سؤال‌ها در آرایه/JSON داخلی و منطق اعتبارسنجی جدا از رندر باشد. توابع کوتاه برای init، render، validate، feedback، save و reset بنویس و ورودی کاربر را امن در DOM بگذار.
+راهنمای فارسیِ تغییر سؤال‌ها و رنگ‌ها را در کامنت ابتدای فایل بگذار. انیمیشن با requestAnimationFrame و مقیاس Canvas متناسب با devicePixelRatio؛ در بستن یا پنهان‌شدن صفحه حلقه و صدا متوقف شوند.
+
+۱۰) چک‌لیست پذیرش پیش از تحویل
+□ همهٔ ${fa(o.count)} چالش و کلیدها از نظر ریاضی بررسی شده‌اند و در دامنهٔ ${a.num} مانده‌اند.
+□ کودک بدون توانایی خواندن هم می‌تواند بازی را کامل کند.
+□ پاسخ درست، خطا، راهنمای دو مرحله‌ای و بازگشت به تمرین مستقل کار می‌کنند.
+□ روی موبایل ۳۶۰ پیکسلی، با تاچ و صفحه‌کلید قابل استفاده است.
+□ بدون شبکه و با LocalStorage مسدود اجرا می‌شود و کنسول خطای اجرایی ندارد.
+□ عنوان تم و شمارهٔ صفحه‌ها در بازی و گزارش آمده‌اند.
+□ اگر سبک حرکتی است، جایگزین بدون پرش و بدون زمان برای همان فعالیت آموزشی وجود دارد.
+اکنون کد کامل و مستقل را تولید کن. این بررسی‌ها را در حد توان خود انجام بده و ادعای آزمون اجراییِ انجام‌نشده نکن.`;
+}
+
+/* ---------- Theme Rail Builder (Themes 1 to 25) ---------- */
+function buildThemeRail() {
+  const container = $("themeRail");
+  let html = `<button type="button" class="theme-pill-btn" data-theme="all" aria-pressed="true">
+    <span>✨ همهٔ ۲۵ تم</span>
+  </button>`;
+
+  DATA.themes.forEach((t) => {
+    html += `<button type="button" class="theme-pill-btn" data-theme="${t.n}" aria-pressed="false" title="${esc(t.topic)}">
+      <b>تم ${fa(t.n)}:</b> <span>${esc(t.short)}</span>
+      <span class="badge-num">ص ${fa(t.start)}-${fa(t.end)}</span>
+    </button>`;
+  });
+
+  container.innerHTML = html;
+
+  container.querySelectorAll("[data-theme]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const val = btn.dataset.theme;
+      state.theme = val;
+      state.shown = 12;
+      playPop();
+      container.querySelectorAll("[data-theme]").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+      render();
+    });
+  });
+}
+
+/* ---------- Filter Chips Builders ---------- */
+function buildFilterChips() {
+  // Skills Chips
+  const skillWrap = $("skillChips");
+  let sHtml = `<button type="button" class="f-chip f-chip-skill" data-skill="all" aria-pressed="true">همه مهارت‌ها</button>`;
+  DATA.skills.forEach((sk) => {
+    const icon = SKILL_ICONS[sk] || "🎯";
+    sHtml += `<button type="button" class="f-chip f-chip-skill" data-skill="${esc(sk)}" aria-pressed="false">
+      <span>${icon}</span> <span>${esc(sk)}</span>
+    </button>`;
+  });
+  skillWrap.innerHTML = sHtml;
+
+  skillWrap.querySelectorAll("[data-skill]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      state.skill = btn.dataset.skill;
+      state.shown = 12;
+      playPop();
+      skillWrap.querySelectorAll("[data-skill]").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+      render();
+    });
+  });
+
+  // Styles Chips
+  const styleWrap = $("styleChips");
+  let stHtml = `<button type="button" class="f-chip f-chip-style" data-style="all" aria-pressed="true">همه سبک‌ها</button>`;
+  DATA.styles.forEach((st, i) => {
+    stHtml += `<button type="button" class="f-chip f-chip-style" data-style="${i}" aria-pressed="false" style="--style-color:${st.color}">
+      <span>${st.icon}</span> <span>${esc(st.name)}</span>
+    </button>`;
+  });
+  styleWrap.innerHTML = stHtml;
+
+  styleWrap.querySelectorAll("[data-style]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const val = btn.dataset.style;
+      state.style = (val === "all") ? null : +val;
+      state.shown = 12;
+      playPop();
+      styleWrap.querySelectorAll("[data-style]").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+      render();
+    });
+  });
+
+  // Modal Style Select
+  $("oStyle").innerHTML = DATA.styles.map((s, i) => `<option value="${i}">${s.icon} ${esc(s.name)} (${esc(s.tag)})</option>`).join("");
+}
+
+/* ---------- Advanced Multi-Filter Logic ---------- */
+function filtered() {
+  const q = norm(state.q);
+  const scope = state.searchScope;
+
+  let list = DATA.activities.filter((a) => {
+    // Kind filter
+    if (state.kind !== "all" && a.kind !== state.kind) return false;
+    // Favorite filter
+    if (state.favOnly && !favs.has(a.id)) return false;
+    // Style filter
+    if (state.style !== null && a.style !== state.style) return false;
+    // Skill filter
+    if (state.skill !== "all" && !a.skills.includes(state.skill)) return false;
+
+    // Theme filter
+    if (state.theme !== "all") {
+      const n = +state.theme;
+      const ok = a.kind === "review" ? (n >= a.span[0] && n <= a.span[1]) : a.theme === n;
+      if (!ok) return false;
+    }
+
+    // Semester filter
+    if (state.semester === "s1") {
+      const isS1 = a.kind === "review" ? (a.span[0] <= 12) : (a.theme <= 12);
+      if (!isS1) return false;
+    } else if (state.semester === "s2") {
+      const isS2 = a.kind === "review" ? (a.span[1] >= 13) : (a.theme >= 13);
+      if (!isS2) return false;
+    }
+
+    // Scoped Search
+    if (q) {
+      const [s, e] = pagesOf(a);
+      let hay = "";
+
+      if (scope === "title") {
+        hay = norm(a.title);
+      } else if (scope === "page") {
+        hay = norm([whereOf(a), s, e, a.theme, a.num].join(" "));
+      } else if (scope === "goal") {
+        hay = norm([a.goal, a.mechanic, a.note].join(" "));
+      } else {
+        // all
+        hay = norm([a.title, a.goal, a.mechanic, a.question, a.note, topicOf(a), a.skills.join(" "), whereOf(a), s, e, KIND[a.kind]].join(" "));
+      }
+
+      const tight = (x) => x.replace(/\s+/g, "");
+      // Check normal or number range match
+      if (!hay.includes(q) && !tight(hay).includes(tight(q))) {
+        // If q is pure number, check if page falls between s and e
+        const qNum = parseInt(q, 10);
+        if (!isNaN(qNum) && qNum >= s && qNum <= e) {
+          // match page range!
+          return true;
+        }
+        return false;
+      }
+    }
+
+    return true;
+  });
+
+  // Sorting
+  list.sort((a, b) => {
+    if (state.sort === "title") return a.title.localeCompare(b.title, "fa");
+    if (state.sort === "page") return pagesOf(a)[0] - pagesOf(b)[0];
+    return (a.kind === "review" ? a.span[1] + 0.5 : a.theme) - (b.kind === "review" ? b.span[1] + 0.5 : b.theme);
+  });
+
+  return list;
+}
+
+/* ---------- Card HTML (Grid vs List View) ---------- */
+function cardHTML(a) {
+  const s = DATA.styles[a.style];
+  const [p1, p2] = pagesOf(a);
+  const themeText = a.kind === "review" ? ("تم " + fa(a.span[0]) + " تا " + fa(a.span[1])) : ("تم " + fa(a.theme));
+
+  if (state.viewMode === "list") {
+    // Compact Horizontal List View
+    return `<article class="card" id="activity-${a.id}" style="--accent:${s.color}">
+      <div class="card-top">
+        <span class="theme-badge">📖 ${esc(themeText)}</span>
+        <span style="font-size:0.78rem;color:var(--ink-soft);font-weight:700;">ص ${fa(p1)} تا ${fa(p2)}</span>
+        <span class="kind-pill kind-${a.kind}">${KIND[a.kind]}</span>
+      </div>
+
+      <div class="card-main-info">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+          <span class="style-badge" style="font-size:0.75rem;padding:2px 8px;">${s.icon} ${esc(s.name)}</span>
+          <h3 style="margin:0;">${esc(a.title)}</h3>
+        </div>
+        <div class="goal-box"><b>هدف:</b> ${esc(a.goal)}</div>
+        <div class="chips" style="margin-top:6px;">
+          ${a.skills.map((k) => `<span class="chip">${esc(k)}</span>`).join("")}
+          <span class="chip chip-num">اعداد ${esc(a.num)}</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="fav" type="button" data-fav="${a.id}" aria-pressed="${favs.has(a.id)}" aria-label="ذخیره">
+          ${favs.has(a.id) ? "★" : "☆"}
+        </button>
+        <button type="button" class="btn-primary" data-open="${a.id}" style="min-height:40px;font-size:0.86rem;">
+          تنظیم پرامپت ⚙️
+        </button>
+        <button type="button" class="btn-quick-copy" data-copy="${a.id}" style="min-height:40px;font-size:0.86rem;">
+          کپی 📋
+        </button>
+      </div>
+    </article>`;
+  }
+
+  // Grid View (Standard Rich Card)
+  return `<article class="card" id="activity-${a.id}" style="--accent:${s.color}">
+    <div class="card-top">
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+        <span class="theme-badge">📖 ${esc(themeText)} • ص ${fa(p1)} تا ${fa(p2)}</span>
+        <span class="kind-pill kind-${a.kind}">${KIND[a.kind]}</span>
+      </div>
+      <button class="fav" type="button" data-fav="${a.id}" aria-pressed="${favs.has(a.id)}" aria-label="ذخیرهٔ ${esc(a.title)}">
+        ${favs.has(a.id) ? "★" : "☆"}
+      </button>
+    </div>
+
+    <span class="style-badge">${s.icon} سبک: ${esc(s.name)} (${esc(s.tag)})</span>
+    <h3>${esc(a.title)}</h3>
+    
+    <div class="goal-box">
+      <b>🎯 هدف:</b> ${esc(a.goal)}
+    </div>
+
+    <div class="chips">
+      ${a.skills.map((k) => `<span class="chip">${esc(k)}</span>`).join("")}
+      <span class="chip chip-num">🔢 اعداد ${esc(a.num)}</span>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn-primary" data-open="${a.id}">
+        <span>⚙️ تنظیم و دریافت</span>
+      </button>
+      <button type="button" class="btn-quick-copy" data-copy="${a.id}">
+        <span>📋 کپی سریع</span>
+      </button>
+    </div>
+  </article>`;
+}
+
+/* ---------- Active Filter Tags Manager ---------- */
+function updateActiveFiltersBar() {
+  const bar = $("activeFiltersBar");
+  const container = $("activeTagsContainer");
+  const tags = [];
+
+  if (state.q) {
+    tags.push({ key: "q", label: `جست‌وجو: «${state.q}»` });
+  }
+  if (state.theme !== "all") {
+    tags.push({ key: "theme", label: `تم ${fa(state.theme)}` });
+  }
+  if (state.semester !== "all") {
+    tags.push({ key: "semester", label: state.semester === "s1" ? "نیم‌سال اول" : "نیم‌سال دوم" });
+  }
+  if (state.kind !== "all") {
+    tags.push({ key: "kind", label: KIND[state.kind] });
+  }
+  if (state.favOnly) {
+    tags.push({ key: "fav", label: "ذخیره‌شده‌ها ★" });
+  }
+  if (state.skill !== "all") {
+    tags.push({ key: "skill", label: `مهارت: ${state.skill}` });
+  }
+  if (state.style !== null) {
+    tags.push({ key: "style", label: `سبک: ${DATA.styles[state.style].name}` });
+  }
+
+  if (tags.length === 0) {
+    bar.hidden = true;
+    container.innerHTML = "";
+    return;
+  }
+
+  bar.hidden = false;
+  container.innerHTML = tags.map((t) => `
+    <span class="active-tag" data-remove-filter="${t.key}" title="حذف این فیلتر">
+      <span>${esc(t.label)}</span> <span>✕</span>
+    </span>
+  `).join("");
+
+  container.querySelectorAll("[data-remove-filter]").forEach((tag) => {
+    tag.addEventListener("click", () => {
+      const k = tag.dataset.removeFilter;
+      if (k === "q") { state.q = ""; $("q").value = ""; $("btnSearchClear").classList.remove("visible"); }
+      if (k === "theme") { state.theme = "all"; $("themeRail").querySelectorAll("[data-theme]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.theme === "all"))); }
+      if (k === "semester") { state.semester = "all"; $("semesterChips").querySelectorAll("[data-semester]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.semester === "all"))); }
+      if (k === "kind") { state.kind = "all"; $("kindChips").querySelectorAll("[data-kind]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.kind === "all"))); }
+      if (k === "fav") { state.favOnly = false; $("favChip").setAttribute("aria-pressed", "false"); }
+      if (k === "skill") { state.skill = "all"; $("skillChips").querySelectorAll("[data-skill]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.skill === "all"))); }
+      if (k === "style") { state.style = null; $("styleChips").querySelectorAll("[data-style]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.style === "all"))); }
+      playPop();
+      render();
+    });
+  });
+}
+
+/* ---------- Main Render ---------- */
+function render() {
+  const list = filtered();
+  const shown = list.slice(0, state.shown);
+
+  const cardsContainer = $("cards");
+  cardsContainer.className = "cards-grid" + (state.viewMode === "list" ? " view-list" : "");
+  cardsContainer.innerHTML = shown.map(cardHTML).join("");
+
+  $("empty").hidden = list.length > 0;
+  $("btnMore").hidden = list.length <= state.shown;
+  $("btnMore").textContent = "نمایش " + fa(Math.min(12, list.length - state.shown)) + " فعالیت دیگر ↓";
+  $("countInfo").textContent = "نمایش " + fa(shown.length) + " از " + fa(list.length) + " فعالیت آموزشی";
+
+  updateActiveFiltersBar();
+
+  // Bind actions
+  cardsContainer.querySelectorAll("[data-open]").forEach((b) => b.addEventListener("click", () => {
+    playPop();
+    openPrompt(+b.dataset.open);
+  }));
+
+  cardsContainer.querySelectorAll("[data-copy]").forEach((b) => b.addEventListener("click", () => {
+    quickCopy(+b.dataset.copy, b);
+  }));
+
+  cardsContainer.querySelectorAll("[data-fav]").forEach((b) => b.addEventListener("click", () => {
+    const id = +b.dataset.fav;
+    if (favs.has(id)) {
+      favs.delete(id);
+      playPop();
+    } else {
+      favs.add(id);
+      playSuccess();
+    }
+    saveFavs();
+    render();
+    toast(favs.has(id) ? "به فعالیت‌های ذخیره‌شده اضافه شد ★" : "از ذخیره‌شده‌ها برداشته شد ☆");
+  }));
+}
+
+/* ---------- Prompt Dialog & State ---------- */
+let current = null;
+
+function optsFromForm() {
+  return {
+    name: $("oName").value.trim() || current.title,
+    level: $("oLevel").value,
+    count: Math.max(3, Math.min(10, +$("oCount").value || 6)),
+    duration: Math.max(3, Math.min(20, +$("oDur").value || 7)),
+    start: +$("oStart").value || null,
+    end: +$("oEnd").value || null,
+    goal: $("oGoal").value.trim(),
+    noDrag: $("cNoDrag").checked,
+    report: $("cReport").checked,
+    sound: $("cSound").checked,
+    timer: $("cTimer").checked
+  };
+}
+
+function regen() {
+  if (!current) return;
+  const o = optsFromForm(), sid = +$("oStyle").value;
+  $("promptBox").value = createPrompt(current, sid, o);
+  countChars();
+}
+
+function countChars() {
+  const len = $("promptBox").value.length;
+  const words = $("promptBox").value.trim().split(/\s+/).length;
+  $("charCount").textContent = fa(len) + " نویسه • " + fa(words) + " کلمه";
+}
+
+function openPrompt(id) {
+  current = DATA.activities.find((a) => a.id === id);
+  const [s, e] = pagesOf(current);
+
+  $("pTitle").textContent = "پرامپت: " + current.title;
+  $("pWhere").textContent = whereOf(current) + " • " + topicOf(current) + " • دامنهٔ اعداد: " + current.num;
+  $("oName").value = current.title;
+  $("oStyle").value = current.style;
+  $("oLevel").value = "استاندارد";
+  
+  document.querySelectorAll(".level-btn").forEach((b) => {
+    b.setAttribute("aria-pressed", String(b.dataset.level === "استاندارد"));
+  });
+
+  $("oCount").value = 6;
+  $("oDur").value = 7;
+  $("oStart").value = s;
+  $("oEnd").value = e;
+  $("oGoal").value = "";
+  $("cNoDrag").checked = true;
+  $("cReport").checked = true;
+  $("cSound").checked = false;
+  $("cTimer").checked = false;
+
+  regen();
+  $("dlgPrompt").showModal();
+}
+
+function defaults(a) {
+  const [s, e] = pagesOf(a);
+  return {
+    name: a.title,
+    level: "استاندارد",
+    count: 6,
+    duration: 7,
+    start: s,
+    end: e,
+    goal: "",
+    noDrag: true,
+    report: true,
+    sound: false,
+    timer: false
+  };
+}
+
+async function copyText(txt) {
+  try {
+    await navigator.clipboard.writeText(txt);
+    return true;
+  } catch(e) {
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = txt;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand("copy");
+      ta.remove();
+      return ok;
+    } catch(e2) {
+      return false;
+    }
+  }
+}
+
+async function quickCopy(id, btn) {
+  const a = DATA.activities.find((x) => x.id === id);
+  const ok = await copyText(createPrompt(a, a.style, defaults(a)));
+  if (ok) {
+    playSuccess();
+    toast("✨ پرامپت «" + a.title + "» کپی شد! اکنون در هوش مصنوعی بچسبانید.");
+    if (btn) {
+      const orig = btn.innerHTML;
+      btn.innerHTML = "<span>کپی شد! ✓</span>";
+      btn.classList.add("copied");
+      setTimeout(() => {
+        btn.innerHTML = orig;
+        btn.classList.remove("copied");
+      }, 1800);
+    }
+  } else {
+    toast("کپی خودکار نشد؛ دکمهٔ «تنظیم و دریافت» را بزنید و دستی کپی کنید.");
+  }
+}
+
+function download(name, txt, type) {
+  const blob = new Blob([txt], { type: type || "text/plain;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+}
+
+/* ---------- Event Listeners ---------- */
+// Search input
+$("q").addEventListener("input", (e) => {
+  state.q = e.target.value;
+  state.shown = 12;
+  $("btnSearchClear").classList.toggle("visible", Boolean(state.q));
+  render();
+});
+
+$("searchScope").addEventListener("change", (e) => {
+  state.searchScope = e.target.value;
+  playPop();
+  render();
+});
+
+$("btnSearchClear").addEventListener("click", () => {
+  state.q = "";
+  $("q").value = "";
+  $("btnSearchClear").classList.remove("visible");
+  playPop();
+  render();
+});
+
+// Quick search tags
+document.querySelectorAll(".search-tag-btn[data-search]").forEach((chip) => {
+  chip.addEventListener("click", () => {
+    const val = chip.dataset.search;
+    $("q").value = val;
+    state.q = val;
+    state.shown = 12;
+    $("btnSearchClear").classList.add("visible");
+    playPop();
+    render();
+  });
+});
+
+// Semester chips
+$("semesterChips").querySelectorAll("[data-semester]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    state.semester = btn.dataset.semester;
+    state.shown = 12;
+    playPop();
+    $("semesterChips").querySelectorAll("[data-semester]").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+    render();
+  });
+});
+
+// Kind chips
+$("kindChips").querySelectorAll("[data-kind]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    state.kind = btn.dataset.kind;
+    state.shown = 12;
+    playPop();
+    $("kindChips").querySelectorAll("[data-kind]").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+    render();
+  });
+});
+
+// Favorite toggle chip
+$("favChip").addEventListener("click", () => {
+  state.favOnly = !state.favOnly;
+  state.shown = 12;
+  playPop();
+  $("favChip").setAttribute("aria-pressed", String(state.favOnly));
+  render();
+});
+
+// Reset all filters button
+function resetAllFilters() {
+  Object.assign(state, {
+    q: "",
+    searchScope: "all",
+    semester: "all",
+    theme: "all",
+    skill: "all",
+    kind: "all",
+    style: null,
+    sort: "theme",
+    favOnly: false,
+    shown: 12
+  });
+
+  $("q").value = "";
+  $("searchScope").value = "all";
+  $("btnSearchClear").classList.remove("visible");
+  $("fSort").value = "theme";
+
+  $("themeRail").querySelectorAll("[data-theme]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.theme === "all")));
+  $("semesterChips").querySelectorAll("[data-semester]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.semester === "all")));
+  $("kindChips").querySelectorAll("[data-kind]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.kind === "all")));
+  $("favChip").setAttribute("aria-pressed", "false");
+  $("skillChips").querySelectorAll("[data-skill]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.skill === "all")));
+  $("styleChips").querySelectorAll("[data-style]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.style === "all")));
+
+  playPop();
+  render();
+}
+
+$("btnResetAll").addEventListener("click", resetAllFilters);
+$("btnShowAll").addEventListener("click", resetAllFilters);
+$("fSort").addEventListener("change", (e) => {
+  state.sort = e.target.value;
+  render();
+});
+
+// View Switchers (Grid vs List)
+$("btnViewGrid").addEventListener("click", () => {
+  state.viewMode = "grid";
+  $("btnViewGrid").classList.add("active");
+  $("btnViewList").classList.remove("active");
+  playPop();
+  render();
+});
+
+$("btnViewList").addEventListener("click", () => {
+  state.viewMode = "list";
+  $("btnViewList").classList.add("active");
+  $("btnViewGrid").classList.remove("active");
+  playPop();
+  render();
+});
+
+$("btnMore").addEventListener("click", () => {
+  state.shown += 12;
+  playPop();
+  render();
+});
+
+// Font Resizer Widget
+document.querySelectorAll(".font-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const size = btn.dataset.fsize;
+    document.documentElement.setAttribute("data-font-size", size);
+    document.querySelectorAll(".font-btn").forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    playPop();
+    toast(`اندازه قلم: ${btn.textContent}`);
+  });
+});
+
+// Level buttons in prompt dialog
+document.querySelectorAll(".level-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".level-btn").forEach((b) => b.setAttribute("aria-pressed", "false"));
+    btn.setAttribute("aria-pressed", "true");
+    $("oLevel").value = btn.dataset.level;
+    playPop();
+    regen();
+  });
+});
+
+// Teacher Goal chip suggestions
+document.querySelectorAll("[data-chip-goal]").forEach((chip) => {
+  chip.addEventListener("click", () => {
+    const currentGoal = $("oGoal").value.trim();
+    const add = chip.dataset.chipGoal;
+    $("oGoal").value = currentGoal ? (currentGoal + "؛ " + add) : add;
+    playPop();
+    regen();
+  });
+});
+
+["oName", "oLevel", "oCount", "oDur", "oStart", "oEnd", "oGoal", "oStyle", "cNoDrag", "cReport", "cSound", "cTimer"].forEach((id) => {
+  $(id).addEventListener("input", regen);
+  $(id).addEventListener("change", regen);
+});
+
+$("btnRegen").addEventListener("click", () => {
+  playPop();
+  regen();
+  toast("پرامپت با تنظیمات جدید بازسازی شد ✓");
+});
+
+$("promptBox").addEventListener("input", countChars);
+
+$("btnCopyBig").addEventListener("click", async () => {
+  const ok = await copyText($("promptBox").value);
+  if (ok) {
+    playSuccess();
+    toast("✨ پرامپت کامل کپی شد! در هوش مصنوعی بچسبانید.");
+  } else {
+    toast("کپی خودکار انجام نشد؛ لطفاً متن را انتخاب و کپی کنید.");
+    $("promptBox").select();
+  }
+});
+
+$("btnDownload").addEventListener("click", () => {
+  playPop();
+  download("prompt-tam" + fa(current.theme) + "-" + current.id + ".txt", $("promptBox").value);
+});
+
+function openGame() {
+  const f = $("gameFrame");
+  if (!f.srcdoc) f.srcdoc = GAME_HTML;
+  $("dlgGame").showModal();
+}
+
+$("btnGoLib").addEventListener("click", () => {
+  playPop();
+  document.getElementById("themeRailSection").scrollIntoView({ block: "start", behavior: "smooth" });
+});
+
+$("btnTryGame").addEventListener("click", () => {
+  playPop();
+  openGame();
+});
+
+$("navGame").addEventListener("click", (e) => {
+  e.preventDefault();
+  playPop();
+  openGame();
+});
+
+$("btnDlGame").addEventListener("click", () => {
+  playSuccess();
+  download("nemune-bazi-tam3.html", GAME_HTML, "text/html;charset=utf-8");
+});
+
+$("btnBrand").addEventListener("click", () => {
+  $("bName").value = brand.name || "";
+  $("bContact").value = brand.contact || "";
+  $("dlgBrand").showModal();
+});
+
+$("btnSaveBrand").addEventListener("click", () => {
+  brand = { name: $("bName").value.trim(), contact: $("bContact").value.trim() };
+  saveBrand();
+  paintBrand();
+  $("dlgBrand").close();
+  playSuccess();
+  toast("نام و برند شما ذخیره شد ✓");
+});
+
+$("btnClearBrand").addEventListener("click", () => {
+  brand = { name: "", contact: "" };
+  saveBrand();
+  paintBrand();
+  $("bName").value = "";
+  $("bContact").value = "";
+  toast("مشخصات برند پاک شد");
+});
+
+function paintBrand() {
+  const name = brand.name ? brand.name : "";
+  $("navBrandName").textContent = name ? ("برند: " + name) : "برند آموزگار";
+  $("brandLine").textContent = brand.name
+    ? ("طراحی و انتشار: " + brand.name + (brand.contact ? (" • " + brand.contact) : ""))
+    : "ساخته‌شده برای آموزگاران و دانش‌آموزان پایهٔ اول ابتدایی";
+}
+
+// Sound toggle button in navbar
+$("btnSoundToggle").addEventListener("click", () => {
+  soundEnabled = !soundEnabled;
+  if (soundEnabled) {
+    initAudio();
+    playSuccess();
+    $("soundIcon").textContent = "🔊";
+    $("btnSoundToggle").setAttribute("aria-pressed", "true");
+    toast("صداهای تعاملی استودیو فعال شد 🔊");
+  } else {
+    $("soundIcon").textContent = "🔇";
+    $("btnSoundToggle").setAttribute("aria-pressed", "false");
+    toast("صدا خاموش شد 🔇");
+  }
+});
+
+// Hero Scene Interactive Click
+$("heroScene").addEventListener("click", () => {
+  if (!soundEnabled) {
+    soundEnabled = true;
+    $("soundIcon").textContent = "🔊";
+    $("btnSoundToggle").setAttribute("aria-pressed", "true");
+  }
+  playTrainWhistle();
+  const train = document.getElementById("trainGroup");
+  if (train) {
+    train.style.transition = "transform 0.25s ease";
+    train.style.transform = "translateY(-6px)";
+    setTimeout(() => { train.style.transform = "translateY(0)"; }, 250);
+  }
+  toast("🚂 بوق قطار ریاضی تم ۳: ۳ واگن نارنجی + ۲ واگن سبز = ۵ واگن دوست!");
+});
+
+// Keyboard shortcuts: '/' to search, 'Esc' to close dialogs
+window.addEventListener("keydown", (e) => {
+  if (e.key === "/" && document.activeElement !== $("q") && !document.querySelector("dialog[open]")) {
+    e.preventDefault();
+    $("q").focus();
+  }
+});
+
+// Dialog Close handlers
+document.querySelectorAll("[data-close]").forEach((b) => b.addEventListener("click", (e) => {
+  e.target.closest("dialog").close();
+}));
+
+document.querySelectorAll("dialog").forEach((d) => d.addEventListener("click", (e) => {
+  if (e.target === d) d.close();
+}));
+
+$("dlgGame").addEventListener("close", () => {
+  $("gameFrame").srcdoc = "";
+});
+
+/* ---------- Init ---------- */
+buildThemeRail();
+buildFilterChips();
+paintBrand();
+render();
+
+if (location.hash.startsWith("#activity-")) {
+  const id = +location.hash.split("-")[1];
+  if (DATA.activities.some((a) => a.id === id)) {
+    setTimeout(() => openPrompt(id), 300);
+  }
+}
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a5b884268ad3fba0',t:'MTc5NDg1MzI5NQ=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a5b884268ad3fba0',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
